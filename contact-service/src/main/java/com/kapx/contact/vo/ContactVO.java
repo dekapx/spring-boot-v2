@@ -6,6 +6,8 @@ public class ContactVO {
     private String phone;
     private String email;
 
+    public ContactVO() {}
+
     public ContactVO(final ContactBuilder contactBuilder) {
         this.firstName = contactBuilder.firstName;
         this.lastName = contactBuilder.lastName;
@@ -15,6 +17,18 @@ public class ContactVO {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public static class ContactBuilder {

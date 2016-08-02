@@ -1,5 +1,6 @@
 package com.kapx.contact.controller;
 
+import com.kapx.contact.vo.ContactVO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.net.URL;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,19 +24,28 @@ public class ContactControllerIT {
     @Value("${local.server.port}")
     private int port;
 
-    private URL base;
-
     @Autowired
     private TestRestTemplate template;
 
     @Before
     public void setUp() throws Exception {
-        this.base = new URL("http://localhost:" + port + "/ping");
+
     }
 
     @Test
-    public void getHello() throws Exception {
+    public void ping() throws Exception {
+        final URL base = new URL("http://localhost:" + port + "/ping");
         ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
         assertThat(response.getBody(), equalTo("Contact Service REST Controller"));
+    }
+
+    @Test
+    public void getContactById() throws Exception {
+        final URL base = new URL("http://localhost:" + port + "/contact/1");
+        ResponseEntity<ContactVO> response = template.getForEntity(base.toString(), ContactVO.class);
+        final ContactVO contactVO = response.getBody();
+        assertThat(contactVO, is(notNullValue()));
+        assertThat(contactVO.getFirstName(), is(equalTo("De")));
+        assertThat(contactVO.getLastName(), is(equalTo("Kapx")));
     }
 }
