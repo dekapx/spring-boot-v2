@@ -1,0 +1,110 @@
++-----------------------------------------------------------------------------------------------------------------+
+$ redis-server  - Start Redis server
+$ redis-cli     - Start Redis commandline interface
+
+- Redis commands -
+$ KEYS *    - get all keys
+    1) "UserPreference"
+$ HGETALL UserPreference    - list value associated with the key '1) "UserPreference"'
+
+$ FLUSHDB   - Removes data from your connection's CURRENT database.
+$ FLUSHALL  - Removes data from ALL databases.
++-----------------------------------------------------------------------------------------------------------------+
+- http://www.baeldung.com/spring-data-redis-tutorial
+- https://github.com/eugenp/tutorials/tree/master/spring-data-redis
++-----------------------------------------------------------------------------------------------------------------+
+- POST -
+http://localhost:8080/pref/save
+{
+  "id": "1",
+  "userId": "1",
+  "geo": {
+    "subscribed": true,
+    "geoTypes": [
+      "NA"
+    ]
+  },
+  "events": {
+    "subscribed": true,
+    "eventTypes": [
+      "SERVER_EVENT"
+    ]
+  },
+  "ownership": {
+    "subscribed": true
+  }
+}
+
+- POST -
+
+http://localhost:8080/pref/update
+
+{
+  "id": "2", -
+  "userId": "3",
+  "geo": {
+    "subscribed": true,
+    "geoTypes": [
+      "NA"
+    ]
+  },
+  "events": {
+    "subscribed": true,
+    "eventTypes": [
+      "SERVER_EVENT",
+      "C2B_FINISH",
+      "POWER_ON_OF_EVENT"
+    ]
+  },
+  "ownership": {
+    "subscribed": true
+  }
+}
+
+- GET -
+http://localhost:8080/pref/findAll
+http://localhost:8080/pref/delete/<user-id>
++-----------------------------------------------------------------------------------------------------------------+
+- For every event processed by EventService
+	- Make call to PreferenceService
+	- Get preferences for all users
+	- Match preference with Event Type
+	- Send the event...
+- Event
+    - C2B Finish (Event)
+    - GEO
+        - NA etc...
+    - Owner
+        - Mine
+        - All
+    - Event Type
+        - SubGroup
+        - All
+
+- C2B Finish (Event)
+    - GEO
+    - Time Stamp
+    - Status
+
+
+Preference
+    - GEO
+        - subs (true|false)
+        - List of GEOs
+    - Owner (true - only mine, false - all events)
+        - My Events
+        - Whole Org Events
+    - Event Types
+        - subs(true|false)
+        - List of Types
+
+        {"geo": {"subs":true}
+         "owner": true
+         "event_type": {"subs":true;"event_type":{"STOP",...}}
+         }
++-----------------------------------------------------------------------------------------------------------------+
+- user id
+- geo info
+-
+
++-----------------------------------------------------------------------------------------------------------------+

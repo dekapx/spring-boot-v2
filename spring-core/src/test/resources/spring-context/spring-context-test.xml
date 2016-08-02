@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="sequenceGenerator" class="com.kapx.spring.core.basicioc.SequenceGenerator">
+		<property name="prefix" value="30" />
+		<property name="suffix" value="A" />
+		<property name="initial" value="100000" />
+	</bean>
+
+</beans>

@@ -1,0 +1,30 @@
+https://www.tomsdev.com/blog/2015/storm-kafka-complex-types/
++-----------------------------------------------------------------------------------------------------------------+
+http://vishnuviswanath.com/realtime-storm-kafka2.html
++-----------------------------------------------------------------------------------------------------------------+
+# configure kafka
+- zookeeper.properties (set data directory path)
+	- dataDir=C:/Installers/kafka/zookeeper-data
+- server.properties	(set log directory path)
+	- log.dirs=C:/Installers/kafka/kafka-logs
++-----------------------------------------------------------------------------------------------------------------+
+# start zookeeper
+$ bin/zookeeper-server-start.sh config/zookeeper.properties
+$ bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+# start kafka broker
+$ bin/kafka-server-start.sh config/server.properties
+$ bin\windows\kafka-server-start.bat config\server.properties
+
+# create a topic
+$ kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafkatopic
+$ bin\windows\kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafkatopic
+
+# list the topics
+$ bin/kafka-topics.sh --list --zookeeper localhost:2181
+$ bin\windows\kafka-topics --list --zookeeper localhost:2181
+
+# send message to topic
+$ bin/kafka-console-producer.sh --broker-list localhost:2181 --topic kafkatopic
+$ bin\windows\kafka-console-producer --broker-list localhost:2181 --topic kafkatopic
++-----------------------------------------------------------------------------------------------------------------+
