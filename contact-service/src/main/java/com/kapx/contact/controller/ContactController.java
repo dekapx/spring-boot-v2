@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.kapx.contact.util.ConversionUtil.toContact;
+
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -23,13 +25,8 @@ public class ContactController {
 
 
     @RequestMapping(value = "/save", method = GET)
-    public void save() {
-        final Contact contact = new Contact();
-        contact.setFirstName("De");
-        contact.setLastName("Kapx");
-        contact.setPhone("123456789");
-        contact.setEmail("dekapx@kapxinc.com");
-
+    public void save(final ContactVO contactVO) {
+        final Contact contact = toContact(contactVO);
         contactService.save(contact);
         LOGGER.info("--- Contact save request ---");
     }

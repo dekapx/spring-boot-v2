@@ -1,7 +1,9 @@
 package com.kapx.contact.controller;
 
+import com.kapx.contact.domain.Contact;
 import com.kapx.contact.vo.ContactVO;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +36,25 @@ public class ContactControllerIT {
 
     @Test
     public void ping() throws Exception {
-        final URL base = new URL("http://localhost:" + port + "/ping");
+        final URL base = new URL("http://localhost:" + port + "/contact/ping");
         ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
         assertThat(response.getBody(), equalTo("Contact Service REST Controller"));
     }
 
+    @Ignore
+    @Test
+    public void saveContact() throws Exception {
+        final URL base = new URL("http://localhost:" + port + "/contact/save");
+        final Contact contact = new Contact();
+        contact.setFirstName("De");
+        contact.setLastName("Kapx");
+        contact.setPhone("123456789");
+        contact.setEmail("dekapx@kapxinc.com");
+    }
+
     @Test
     public void getContactById() throws Exception {
-        final URL base = new URL("http://localhost:" + port + "/contact/1");
+        final URL base = new URL("http://localhost:" + port + "/contact/find/1");
         ResponseEntity<ContactVO> response = template.getForEntity(base.toString(), ContactVO.class);
         final ContactVO contactVO = response.getBody();
         assertThat(contactVO, is(notNullValue()));
