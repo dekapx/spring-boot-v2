@@ -1,5 +1,10 @@
-http://ryanjbaxter.com/2014/12/17/building-rest-apis-with-spring-boot/
-http://ryanjbaxter.com/2015/01/06/securing-rest-apis-with-spring-boot/
-https://jaxenter.com/rest-api-spring-java-8-112289.html
-http://g00glen00b.be/securing-your-rest-api-with-spring-security/
-https://www.future-processing.pl/blog/exploring-spring-boot-and-spring-security-custom-token-based-authentication-of-rest-services-with-spring-security-and-pinch-of-spring-java-configuration-and-spring-integration-testing/
+Spring REST Security
+- http://ryanjbaxter.com/2014/12/17/building-rest-apis-with-spring-boot/
+- http://ryanjbaxter.com/2015/01/06/securing-rest-apis-with-spring-boot/
+- https://jaxenter.com/rest-api-spring-java-8-112289.html
+- http://g00glen00b.be/securing-your-rest-api-with-spring-security/
+- https://www.future-processing.pl/blog/exploring-spring-boot-and-spring-security-custom-token-based-authentication-of-rest-services-with-spring-security-and-pinch-of-spring-java-configuration-and-spring-integration-testing/
+
+Spring Batch
+- https://spring.io/guides/gs/batch-processing/
+- https://thetechnicaljournal.wordpress.com/2016/01/10/spring-boot-batch-starter-example/

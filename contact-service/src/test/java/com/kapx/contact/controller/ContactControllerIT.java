@@ -38,22 +38,25 @@ public class ContactControllerIT {
         assertThat(response.getBody(), equalTo("Contact Service REST Controller"));
     }
 
-    @Ignore
     @Test
     public void saveContact() throws Exception {
-        final URL base = new URL("http://localhost:" + port + "/contact/save");
+        final URL url = new URL("http://localhost:" + port + "/contact/save");
         final Contact contact = new Contact();
         contact.setFirstName("De");
         contact.setLastName("Kapx");
         contact.setAddress("2121, El Comino Real, San Mateo, CA");
         contact.setPhone("123456789");
         contact.setEmail("dekapx@kapxinc.com");
+        ResponseEntity<Contact> response = template.postForEntity(url.toString(), contact, Contact.class);
+        System.out.println(response.getStatusCode());
     }
 
+    @Ignore
     @Test
     public void getContactById() throws Exception {
-        final URL base = new URL("http://localhost:" + port + "/contact/find/1");
-        ResponseEntity<Contact> response = template.getForEntity(base.toString(), Contact.class);
+        final URL url = new URL("http://localhost:" + port + "/contact/find/1");
+        ResponseEntity<Contact> response = template.getForEntity(url.toString(), Contact.class);
+        System.out.println(response.getStatusCode());
         final Contact contact = response.getBody();
         assertThat(contact, is(notNullValue()));
         assertThat(contact.getFirstName(), is(equalTo("De")));

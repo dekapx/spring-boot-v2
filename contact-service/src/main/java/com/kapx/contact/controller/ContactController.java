@@ -2,15 +2,12 @@ package com.kapx.contact.controller;
 
 import com.kapx.contact.domain.Contact;
 import com.kapx.contact.service.ContactService;
-import com.kapx.contact.vo.ContactVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-import static com.kapx.contact.util.ConversionUtil.toContact;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -25,8 +22,7 @@ public class ContactController {
 
 
     @RequestMapping(value = "/save", method = GET)
-    public void save(final ContactVO contactVO) {
-        final Contact contact = toContact(contactVO);
+    public void save(final Contact contact) {
         contactService.save(contact);
         LOGGER.info("--- Contact save request ---");
     }
