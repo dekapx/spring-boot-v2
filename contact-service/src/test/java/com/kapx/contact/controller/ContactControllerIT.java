@@ -1,7 +1,6 @@
 package com.kapx.contact.controller;
 
 import com.kapx.contact.domain.Contact;
-import com.kapx.contact.vo.ContactVO;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -15,9 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.net.URL;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,6 +45,7 @@ public class ContactControllerIT {
         final Contact contact = new Contact();
         contact.setFirstName("De");
         contact.setLastName("Kapx");
+        contact.setAddress("2121, El Comino Real, San Mateo, CA");
         contact.setPhone("123456789");
         contact.setEmail("dekapx@kapxinc.com");
     }
@@ -55,10 +53,10 @@ public class ContactControllerIT {
     @Test
     public void getContactById() throws Exception {
         final URL base = new URL("http://localhost:" + port + "/contact/find/1");
-        ResponseEntity<ContactVO> response = template.getForEntity(base.toString(), ContactVO.class);
-        final ContactVO contactVO = response.getBody();
-        assertThat(contactVO, is(notNullValue()));
-        assertThat(contactVO.getFirstName(), is(equalTo("De")));
-        assertThat(contactVO.getLastName(), is(equalTo("Kapx")));
+        ResponseEntity<Contact> response = template.getForEntity(base.toString(), Contact.class);
+        final Contact contact = response.getBody();
+        assertThat(contact, is(notNullValue()));
+        assertThat(contact.getFirstName(), is(equalTo("De")));
+        assertThat(contact.getLastName(), is(equalTo("Kapx")));
     }
 }
