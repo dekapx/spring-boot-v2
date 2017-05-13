@@ -13,8 +13,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
 @RequestMapping(value = "/dvdrental")
-public class DvdRentalController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(DvdRentalController.class);
+public class UserController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(value = "/ping", method = GET)
     public String ping() {

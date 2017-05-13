@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-public class DvdRentalControllerIT {
+public class UserControllerIT {
     @Value("${local.server.port}")
     private int port;
 
