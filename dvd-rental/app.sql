@@ -2,6 +2,7 @@
 
 CREATE TABLE USERS (
   ID INTEGER NOT NULL DEFAULT nextval('USERS_ID_SEQ'::regclass),
+  USERNAME CHARACTER VARYING(45) COLLATE pg_catalog."default" NOT NULL,
   FIRST_NAME CHARACTER VARYING(45) COLLATE pg_catalog."default" NOT NULL,
   LAST_NAME CHARACTER VARYING(45) COLLATE pg_catalog."default" NOT NULL,
   EMAIL CHARACTER VARYING(50) COLLATE pg_catalog."default",
@@ -13,8 +14,8 @@ CREATE TABLE USERS (
 
 ALTER SEQUENCE USERS_ID_SEQ OWNED BY USERS.id;
 
-INSERT INTO public.USERS(FIRST_NAME, LAST_NAME, EMAIL, ACTIVE)
-VALUES ('De', 'Kapx', 'dekapx@dvdrental.com', true);
+INSERT INTO public.USERS(USERNAME, FIRST_NAME, LAST_NAME, EMAIL, ACTIVE)
+VALUES ('dekapx', 'De', 'Kapx', 'dekapx@dvdrental.com', true);
 
-INSERT INTO public.USERS(FIRST_NAME, LAST_NAME, EMAIL, ACTIVE)
-VALUES ('Test', 'User', 'testuser@dvdrental.com', true);
+INSERT INTO public.USERS(USERNAME, FIRST_NAME, LAST_NAME, EMAIL, ACTIVE)
+VALUES ('testuser', 'Test', 'User', 'testuser@dvdrental.com', true);

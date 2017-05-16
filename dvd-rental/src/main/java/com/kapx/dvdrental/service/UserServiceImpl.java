@@ -13,6 +13,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     public UserServiceImpl(final UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -25,19 +28,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(Long id) {
-        // TODO:
-        return null;
+    public User getById(final Long id) {
+        return userRepository.findOne(id);
     }
 
     @Override
-    public User saveOrUpdate(User product) {
-        // TODO:
-        return null;
+    public User saveOrUpdate(final User product) {
+        return userRepository.save(product);
     }
 
     @Override
-    public void delete(Long id) {
-        // TODO:
+    public void delete(final Long id) {
+        userRepository.delete(id);
     }
 }

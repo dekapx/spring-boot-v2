@@ -35,6 +35,7 @@ public class UserRepositoryTest {
     public void create() throws Exception {
         // Arrange
         User user = new User();
+        user.setUsername("dummyuser");
         user.setFirstName("Dummy");
         user.setLastName("User");
         user.setEmail("dummy.user@dvd-rental.com");
@@ -46,9 +47,18 @@ public class UserRepositoryTest {
 
         // Assert
         assertThat(user.getId(), is(notNullValue()));
+        assertThat(user.getUsername(), is(equalTo("dummyuser")));
         assertThat(user.getFirstName(), is(equalTo("Dummy")));
         assertThat(user.getLastName(), is(equalTo("User")));
         assertThat(user.getEmail(), is(equalTo("dummy.user@dvd-rental.com")));
+    }
+
+    @Test
+    public void find() throws Exception {
+        final List<User> users = new ArrayList<>();
+        users.addAll(userRepository.findByUsername("dummyuser"));
+        assertThat(users, is(notNullValue()));
+        assertThat(users.size(), is(equalTo(1)));
     }
 
     @Test

@@ -5,18 +5,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 import java.util.Date;
 
 
 @Entity(name = "User")
+@NamedQuery(name = "Person.findByUsername", query = "SELECT u FROM User u WHERE LOWER(u.username) = LOWER(?1)")
 @Table(name = "Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
+    @Column(name="username")
+    private String username;
 
     @Column(name="first_name")
     private String firstName;
@@ -42,6 +47,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
