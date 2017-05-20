@@ -3,6 +3,7 @@ package com.kapx.dvdrental.repository;
 import com.kapx.dvdrental.domain.User;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -47,6 +49,13 @@ public class UserRepositoryTest {
 
         // Assert
         assertThat(user.getId(), is(notNullValue()));
+    }
+
+    @Test
+    public void find() throws Exception {
+        final Optional<User> userOptional = userRepository.findByUsername("dummyuser");
+        final User user = userOptional.get();
+        assertThat(user.getId(), is(notNullValue()));
         assertThat(user.getUsername(), is(equalTo("dummyuser")));
         assertThat(user.getFirstName(), is(equalTo("Dummy")));
         assertThat(user.getLastName(), is(equalTo("User")));
@@ -54,25 +63,9 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void find() throws Exception {
-        final List<User> users = new ArrayList<>();
-        users.addAll(userRepository.findByUsername("dummyuser"));
-        assertThat(users, is(notNullValue()));
-        assertThat(users.size(), is(equalTo(1)));
-    }
-
-    @Test
-    public void list() throws Exception {
-        final List<User> users = new ArrayList<>();
-        userRepository.findAll().forEach(users::add);
-        assertThat(users, is(notNullValue()));
-        assertThat(users.size(), is(equalTo(1)));
-    }
-
-    @Test
     public void remove() throws Exception {
-        final User user = userRepository.findAll().iterator().next();
-        assertThat(user, is(notNullValue()));
+        final Optional<User> userOptional = userRepository.findByUsername("dummyuser");
+        final User user = userOptional.get();
         userRepository.delete(user);
         assertThat(userRepository.findOne(user.getId()), is(nullValue()));
     }

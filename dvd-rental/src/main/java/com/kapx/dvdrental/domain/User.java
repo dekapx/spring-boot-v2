@@ -12,7 +12,6 @@ import java.util.Date;
 
 
 @Entity(name = "User")
-@NamedQuery(name = "Person.findByUsername", query = "SELECT u FROM User u WHERE LOWER(u.username) = LOWER(?1)")
 @Table(name = "Users")
 public class User {
     @Id
@@ -20,19 +19,19 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name="username")
+    @Column(name="username", nullable = false)
     private String username;
 
-    @Column(name="first_name")
+    @Column(name="first_name", nullable = false)
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name="last_name", nullable = false)
     private String lastName;
 
-    @Column(name="email")
+    @Column(name="email", nullable = false)
     private String email;
 
-    @Column(name="active")
+    @Column(name="active", nullable = false)
     private boolean active;
 
     @Column(name="create_date")
