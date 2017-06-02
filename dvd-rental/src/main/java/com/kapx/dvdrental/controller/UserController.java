@@ -1,7 +1,6 @@
 package com.kapx.dvdrental.controller;
 
 
-import com.kapx.dvdrental.domain.User;
 import com.kapx.dvdrental.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -29,11 +26,11 @@ public class UserController {
         LOGGER.info("--- DVD Rental REST Controller ping method invoked. ---");
         return "DVD Rental REST Controller";
     }
-
-    @RequestMapping(value = "/findAll", method = GET)
-    public List<User> findAll() {
-        return userService.findAll();
-    }
+//
+//    @RequestMapping(value = "/findAll", method = GET)
+//    public List<UserDto> findAll() {
+//        return userService.findAll();
+//    }
 
     @ExceptionHandler
     @ResponseStatus(CONFLICT)
