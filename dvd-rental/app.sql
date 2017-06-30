@@ -17,3 +17,6 @@ ALTER SEQUENCE USERS_ID_SEQ OWNED BY USERS.id;
 
 INSERT INTO public.USERS(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, ACTIVE)
 VALUES ('dekapx', 'password', 'De', 'Kapx', 'dekapx@dvdrental.com', true);
+
+INSERT INTO public.USERS(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, ACTIVE)
+VALUES ('testuser', 'password', 'Test', 'User', 'testuser@dvdrental.com', true);
