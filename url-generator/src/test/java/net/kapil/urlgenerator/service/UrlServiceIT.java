@@ -60,6 +60,10 @@ public class UrlServiceIT {
     private void deleteUrl_withValidUrl_deleteExistingUrl(final String url) throws Exception {
         final UrlShortenerRequestDto requestDto = UrlShortenerRequestDto.builder().originalUrl(url).build();
         urlService.delete(requestDto);
+
+        expected.expect(UrlNotFoundException.class);
+        expected.expectMessage("Exception: The URL [" + url + "] not found in the database...");
+        urlService.findByUrl(requestDto);
     }
 
 }

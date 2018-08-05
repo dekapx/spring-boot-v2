@@ -1,9 +1,6 @@
 package net.kapil.urlgenerator.domain;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,9 +13,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "URLS")
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 public class UrlEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
