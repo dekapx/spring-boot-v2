@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 public class UrlServiceImpl implements UrlService {
@@ -33,14 +34,17 @@ public class UrlServiceImpl implements UrlService {
 
         final Optional<UrlEntity> optionalEntity = urlRepository.findByUrl(requestDto.getOriginalUrl());
         if(optionalEntity.isPresent()) {
-            return UrlShortenerResponseDto.builder().shortenUrl(optionalEntity.get().getShortenUrl()).build();
+            return toUrlShortenerResponseDto(optionalEntity.get());
         } else {
-            final String shortUrl = urlShortenerService.getShortUrl(requestDto.getOriginalUrl());
-            final UrlEntity urlEntity = toUrlEntity(requestDto, shortUrl);
-            urlRepository.save(urlEntity);
-            return UrlShortenerResponseDto.builder().shortenUrl(shortUrl).build();
+            return getAndPersistShortUrl.andThen(e -> toUrlShortenerResponseDto(e)).apply(requestDto);
         }
     }
+
+    private Function<UrlShortenerRequestDto, UrlEntity> getAndPersistShortUrl = (requestDto) -> {
+        final String shortUrl = urlShortenerService.getShortUrl(requestDto.getOriginalUrl());
+        final UrlEntity urlEntity = toUrlEntity(requestDto, shortUrl);
+        return urlRepository.save(urlEntity);
+    };
 
     @Override
     public UrlShortenerResponseDto findByUrl(final UrlShortenerRequestDto requestDto) {
@@ -72,8 +76,12 @@ public class UrlServiceImpl implements UrlService {
     }
 
     private UrlShortenerResponseDto toUrlShortenerResponseDto(final UrlEntity entity) {
+        return toUrlShortenerResponseDto(entity.getShortenUrl()) ;
+    }
+
+    private UrlShortenerResponseDto toUrlShortenerResponseDto(final String shortUrl) {
         return UrlShortenerResponseDto.builder()
-                .shortenUrl(entity.getShortenUrl())
+                .shortenUrl(shortUrl)
                 .build();
     }
 
