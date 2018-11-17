@@ -1,0 +1,6 @@
+{
+  "from": "sender@test.com",
+  "to": "receiver@test.com",
+  "subject": "Test Message",
+  "body": "This is a test message for Kafka Topic."
+}

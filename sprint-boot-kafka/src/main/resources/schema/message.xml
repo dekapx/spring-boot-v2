@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<message>
+    <from>sender@test.com</from>
+    <to>receiver@test.com</to>
+    <subject>Test Message</subject>
+    <body>This is a test message for Kafka Topic.</body>
+</message>

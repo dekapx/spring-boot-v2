@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.example.org/message" version="1.0">
+    <xs:element name="message">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="from" type="xs:string"/>
+                <xs:element name="to" type="xs:string"/>
+                <xs:element name="subject" type="xs:string"/>
+                <xs:element name="body" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
