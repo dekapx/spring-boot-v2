@@ -18,3 +18,6 @@ $ docker rmi -f $(docker images -q)
 
 # Delete all unused images and volumes
 $ docker system prune --all
+
+# How to run (Open browser and enter URL...)
+http://localhost:9090/api/ping
