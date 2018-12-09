@@ -29,9 +29,6 @@ $ docker stop $(docker ps -a -q)
 # Delete every Docker containers, must run first as images are attached to containers
 $ docker rm -f $(docker ps -a -q)
 
-# Remove the container
-$ docker rm -vf $(docker ps -aq)
-
 # Delete every Docker image
 $ docker rmi -f $(docker images -q)
 
