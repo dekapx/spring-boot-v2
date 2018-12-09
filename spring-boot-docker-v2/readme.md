@@ -1,5 +1,4 @@
 # Spring Boot Docker Compose Example
-#--------------------------------------------------------------------------------------------------
 
 # Build the project
 $ mvn clean install
@@ -8,7 +7,6 @@ $ mvn clean install
 $ cd src/main/docker
 $ docker-compose up
 
-#--------------------------------------------------------------------------------------------------
 # Stop the running container
 $ docker stop $(docker ps -a -q)
 
@@ -20,5 +18,3 @@ $ docker rmi -f $(docker images -q)
 
 # Delete all unused images and volumes
 $ docker system prune --all
-
-#--------------------------------------------------------------------------------------------------
