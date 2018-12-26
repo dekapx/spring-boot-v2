@@ -1,3 +1,4 @@
+-- status table --
 create sequence STATUS_ID_SEQ;
 
 create table STATUS (
@@ -8,6 +9,7 @@ create table STATUS (
 
 alter sequence STATUS_ID_SEQ owned by STATUS.id;
 
+-- contact table --
 create sequence CONTACT_ID_SEQ;
 
 create table CONTACTS (
