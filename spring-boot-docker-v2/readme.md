@@ -1,4 +1,4 @@
-# Spring Boot Docker Compose Example
+## Spring Boot Docker Compose Example
 
 # Build the project
 $ mvn clean install
@@ -21,3 +21,12 @@ $ docker system prune --all
 
 # How to run (Open browser and enter URL...)
 http://localhost:9090/api/ping
+
+--------------------------------------------------------------------------------------------
+## setup postgres for dev environment
+# Pull PostgreSQL latest image
+$ docker pull postgres
+
+# Setup and run PostgreSQL image in docker container
+$ docker run -d --name pg-docker-dev -e POSTGRES_USER=dekapx -e POSTGRES_PASSWORD=passw0rd -e POSTGRES_DB=testdb -p 5432:5432 postgres:latest
+--------------------------------------------------------------------------------------------
