@@ -1,6 +1,7 @@
 package com.dekapx.springboot.domain;
 
 import lombok.Data;
+import lombok.extern.java.Log;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import java.util.Date;
 
+@Log
 @Data
 @Entity
 @Table(name = "CONTACTS")
@@ -55,13 +57,16 @@ public class ContactEntity {
 
     @PrePersist
     public void onPrePersist() {
+        log.info("onPrePersist..........................");
     }
 
     @PreUpdate
     public void onPreUpdate() {
+        log.info("onPreUpdate..........................");
     }
 
     @PreRemove
     public void onPreRemove() {
+        log.info("onPreRemove..........................");
     }
 }
