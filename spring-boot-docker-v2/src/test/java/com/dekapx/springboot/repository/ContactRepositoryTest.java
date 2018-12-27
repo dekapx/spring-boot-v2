@@ -37,7 +37,6 @@ public class ContactRepositoryTest {
         entity.setEmail("test@gmail.com");
         entity.setPhone("0123456789");
         entity.setStatus(status);
-        entity.setModifiedDate(new Date());
         entity.setModifiedBy("DeKapx");
         entity = contactRepository.save(entity);
         return entity.getId();

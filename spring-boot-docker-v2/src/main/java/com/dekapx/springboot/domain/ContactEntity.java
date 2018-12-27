@@ -2,6 +2,8 @@ package com.dekapx.springboot.domain;
 
 import lombok.Data;
 import lombok.extern.java.Log;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -17,6 +19,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreRemove;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import java.time.Instant;
 import java.util.Date;
 
 @Log
@@ -45,8 +48,13 @@ public class ContactEntity {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "MODIFIED_DATE")
-    private Date modifiedDate;
+    @CreatedDate
+    @Column(name = "CREATED_DATE", nullable = false, updatable = false)
+    private Instant createdDate;
+
+    @LastModifiedDate
+    @Column(name = "MODIFIED_DATE", nullable = false)
+    private Instant modifiedDate;
 
     @Column(name = "MODIFIED_BY")
     private String modifiedBy;
