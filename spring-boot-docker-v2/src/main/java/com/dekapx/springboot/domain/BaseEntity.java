@@ -17,6 +17,7 @@ import java.time.Instant;
 @Data
 @MappedSuperclass
 public class BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")

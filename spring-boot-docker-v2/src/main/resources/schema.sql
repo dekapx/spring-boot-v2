@@ -28,3 +28,17 @@ ID integer not null default nextval('CONTACT_ID_SEQ'::regclass),
 );
 
 alter sequence CONTACT_ID_SEQ owned by CONTACTS.id;
+
+-- audit table --
+create sequence CONTACT_ADT_ID_SEQ;
+
+create table CONTACT_ADT (
+	ID integer not null default nextval('CONTACT_ADT_ID_SEQ'::regclass),
+	ENTITY_ID integer not null,
+	FIELD_NAME varchar(100) not null,
+	OLD_VALUE varchar(100) not null,
+	NEW_VALUE varchar(100) not null,
+	primary key (ID, ENTITY_ID)
+);
+
+alter sequence CONTACT_ADT_ID_SEQ owned by CONTACT_ADT.id;

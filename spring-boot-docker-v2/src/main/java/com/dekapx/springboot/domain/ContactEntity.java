@@ -1,6 +1,7 @@
 package com.dekapx.springboot.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.extern.java.Log;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -14,10 +15,12 @@ import javax.persistence.Table;
 
 @Log
 @Data
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "CONTACTS")
 @EntityListeners(AuditingEntityListener.class)
 public class ContactEntity extends BaseEntity {
+
     @Column(name = "FIRST_NAME")
     private String firstName;
 

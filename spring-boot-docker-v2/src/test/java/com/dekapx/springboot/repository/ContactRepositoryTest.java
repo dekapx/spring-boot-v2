@@ -1,5 +1,6 @@
 package com.dekapx.springboot.repository;
 
+import com.dekapx.springboot.domain.ContactAuditEntity;
 import com.dekapx.springboot.domain.ContactEntity;
 import com.dekapx.springboot.domain.StatusEntity;
 import org.junit.Assert;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
 import java.util.Optional;
 
 @SpringBootTest
@@ -20,16 +20,22 @@ public class ContactRepositoryTest {
     private ContactRepository contactRepository;
 
     @Autowired
+    private ContactAuditRepository auditRepository;
+
+    @Autowired
     private StatusRepository statusRepository;
 
     @Test
     public void performContactCrudOperations() {
-        Long id = create();
+        Long id = createContact();
         Assert.assertNotNull(id);
+
+        Long auditId = createAudit(id);
+        Assert.assertNotNull(auditId);
     }
 
-    private Long create() {
-        final StatusEntity status = statusRepository.findByStatus("PENDING_AUTHORISED");
+    private Long createContact() {
+        StatusEntity status = statusRepository.findByStatus("PENDING_AUTHORISED");
         ContactEntity entity = new ContactEntity();
         entity.setFirstName("Test");
         entity.setLastName("Contact");
@@ -38,8 +44,18 @@ public class ContactRepositoryTest {
         entity.setPhone("0123456789");
         entity.setStatus(status);
         entity.setModifiedBy("DeKapx");
-        entity = contactRepository.save(entity);
+        contactRepository.save(entity);
         return entity.getId();
+    }
+
+    private Long createAudit(Long entityId) {
+        ContactAuditEntity auditEntity = new ContactAuditEntity();
+        auditEntity.setEntityId(entityId);
+        auditEntity.setFieldName("email");
+        auditEntity.setOldValue("test@gmail.com");
+        auditEntity.setNewValue("test1@gmail.com");
+        auditRepository.save(auditEntity);
+        return auditEntity.getId();
     }
 
     private ContactEntity findById(final Long id) {
