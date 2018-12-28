@@ -2,7 +2,8 @@ package com.dekapx.springboot.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.extern.java.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
@@ -13,13 +14,13 @@ import javax.persistence.PreRemove;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-@Log
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "CONTACTS")
 @EntityListeners(AuditingEntityListener.class)
 public class ContactEntity extends BaseEntity {
+    private static final Logger LOGGER  = LoggerFactory.getLogger(ContactEntity.class);
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -38,16 +39,16 @@ public class ContactEntity extends BaseEntity {
 
     @PrePersist
     public void onPrePersist() {
-        log.info("onPrePersist..........................");
+        LOGGER.info("onPrePersist..........................");
     }
 
     @PreUpdate
     public void onPreUpdate() {
-        log.info("onPreUpdate..........................");
+        LOGGER.info("onPreUpdate..........................");
     }
 
     @PreRemove
     public void onPreRemove() {
-        log.info("onPreRemove..........................");
+        LOGGER.info("onPreRemove..........................");
     }
 }
