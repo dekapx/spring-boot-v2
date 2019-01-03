@@ -9,6 +9,7 @@ public class ContactServiceHelperImpl implements ContactServiceHelper {
     @Override
     public ContactDto toContactDto(final ContactEntity entity) {
         return ContactDto.builder()
+                .id(entity.getId())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .address(entity.getAddress())
