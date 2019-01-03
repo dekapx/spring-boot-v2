@@ -27,14 +27,17 @@ public class ContactRepositoryTest {
 
     @Test
     public void performContactCrudOperations() {
-        Long id = createContact();
-        Assert.assertNotNull(id);
+        ContactEntity entity = createContact();
+        Assert.assertNotNull(entity);
 
-        Long auditId = createAudit(id);
+        Long auditId = createAudit(entity.getId());
         Assert.assertNotNull(auditId);
+
+        entity.setFirstName("modified name");
+        contactRepository.save(entity);
     }
 
-    private Long createContact() {
+    private ContactEntity createContact() {
         StatusEntity status = statusRepository.findByStatus("PENDING_AUTHORISED");
         ContactEntity entity = new ContactEntity();
         entity.setFirstName("Test");
@@ -45,7 +48,7 @@ public class ContactRepositoryTest {
         entity.setStatus(status);
         entity.setModifiedBy("DeKapx");
         contactRepository.save(entity);
-        return entity.getId();
+        return entity;
     }
 
     private Long createAudit(Long entityId) {

@@ -29,7 +29,6 @@ public class ContactServiceTest {
                 .address("Dublin, Ireland")
                 .phone("+353 123 456 7890")
                 .email("dekapx@kapxinc.com")
-                .status("PENDING_AUTHORISED")
                 .modifiedBy("Administrator")
                 .build();
     }
