@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(SpringRunner.class)
 public class ContactServiceTest {
 
-    @Autowired
+    @Autowired(required = true)
     private ContactService contactService;
 
     @Test
@@ -25,10 +25,11 @@ public class ContactServiceTest {
         assertEquals(StatusType.PENDING_AUTHORISED.toString(), contactDto.getStatus());
 
         contactDto = contactService.authorize(contactDto.getId());
+        contactDto.setFirstName("De-modified");
+        contactDto.setLastName("Kapx-modified");
         assertNotNull(contactDto.getId());
         assertEquals(StatusType.AUTHORISED.toString(), contactDto.getStatus());
     }
-
 
     private ContactDto createDto() {
         return ContactDto.builder()

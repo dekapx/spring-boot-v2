@@ -3,8 +3,10 @@ package com.dekapx.springboot.command;
 import com.dekapx.springboot.domain.BaseEntity;
 import com.dekapx.springboot.enums.StatusType;
 import com.dekapx.springboot.repository.ObjectNotFoundException;
+import com.dekapx.springboot.service.AuditService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ import java.util.Optional;
 @Service("authorizeCommand")
 public class AuthorizeCommand extends AbstractCommand implements Command<AuthorizeRequest, AuthorizeResponse> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthorizeCommand.class);
+
+    @Autowired
+    private AuditService auditService;
 
     @Override
     public AuthorizeResponse execute(AuthorizeRequest request) {

@@ -1,5 +1,6 @@
 package com.dekapx.springboot.domain;
 
+import com.dekapx.springboot.annotation.AuditField;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.slf4j.Logger;
@@ -15,16 +16,18 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = "CONTACTS")
+@EqualsAndHashCode(callSuper = false)
 @EntityListeners(AuditingEntityListener.class)
 public class ContactEntity extends BaseEntity {
     private static final Logger LOGGER  = LoggerFactory.getLogger(ContactEntity.class);
 
+    @AuditField
     @Column(name = "FIRST_NAME")
     private String firstName;
 
+    @AuditField
     @Column(name = "LAST_NAME")
     private String lastName;
 

@@ -4,7 +4,7 @@ import com.dekapx.springboot.domain.ContactEntity;
 import com.dekapx.springboot.dto.ContactDto;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("contactServiceHelper")
 public class ContactServiceHelperImpl implements ContactServiceHelper {
     @Override
     public ContactDto toContactDto(final ContactEntity entity) {

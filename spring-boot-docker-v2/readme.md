@@ -30,3 +30,7 @@ $ docker pull postgres
 # Setup and run PostgreSQL image in docker container
 $ docker run -d --name pg-docker-dev -e POSTGRES_USER=dekapx -e POSTGRES_PASSWORD=passw0rd -e POSTGRES_DB=testdb -p 5432:5432 postgres:latest
 --------------------------------------------------------------------------------------------
+# Application URLs -
+- http://localhost:9090/api/ping
+- http://localhost:9090/swagger-ui.html
+--------------------------------------------------------------------------------------------
