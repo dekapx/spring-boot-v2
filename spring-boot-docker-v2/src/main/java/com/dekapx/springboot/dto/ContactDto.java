@@ -1,13 +1,19 @@
 package com.dekapx.springboot.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Builder
-public class ContactDto {
+@NoArgsConstructor
+@AllArgsConstructor
+public class ContactDto implements Serializable {
 
     private Long id;
     private String firstName;

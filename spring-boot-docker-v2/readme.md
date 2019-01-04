@@ -2,6 +2,7 @@
 
 # Build the project
 $ mvn clean install
+$ mvn clean install -Dmaven.test.skip=true
 
 # Start the container
 $ cd src/main/docker
@@ -28,9 +29,13 @@ http://localhost:9090/api/ping
 $ docker pull postgres
 
 # Setup and run PostgreSQL image in docker container
-$ docker run -d --name pg-docker-dev -e POSTGRES_USER=dekapx -e POSTGRES_PASSWORD=passw0rd -e POSTGRES_DB=testdb -p 5432:5432 postgres:latest
+$ docker run -d --name pg-docker-dev -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -p 5432:5432 postgres:latest
 --------------------------------------------------------------------------------------------
 # Application URLs -
 - http://localhost:9090/api/ping
 - http://localhost:9090/swagger-ui.html
 --------------------------------------------------------------------------------------------
+spring.datasource.url=jdbc:postgresql://pgdocker:5432/testdb
+spring.datasource.username=postgres
+spring.datasource.password=password
+spring.jpa.hibernate.ddl-auto=create
