@@ -39,47 +39,41 @@ $ docker rmi -f $(docker images -q)
 
 # Delete all unused images and volumes
 $ docker system prune --all
-
 ---------------------------------------------------------------------------------------------------------
 # Docker PostgreSQL 
----------------------------------------------------------------------------------------------------------
+
 # Display all images
 $ docker images
----------------------------------------------------------------------------------------------------------
+
 # Display all containers (stop or running)
 $ docker ps -a
----------------------------------------------------------------------------------------------------------
+
 # Pull PostgreSQL latest image
 $ docker pull postgres
----------------------------------------------------------------------------------------------------------
+
 # Setup and run PostgreSQL image in docker container
 $ docker run -d --name pg-docker-dev -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -p 5432:5432 postgres:latest
----------------------------------------------------------------------------------------------------------
+
 # Stop a running container (pg-docker-dev - name of the image)
 $ docker stop pg-docker-dev 
 
 # Stop the running containers
 $ docker stop $(docker ps -a -q)
----------------------------------------------------------------------------------------------------------
+
 # Remove the container
 $ docker rm pg-docker-dev
 
 # Delete every Docker containers, must run first as images are attached to containers
 $ docker rm -f $(docker ps -a -q)
----------------------------------------------------------------------------------------------------------
+
 # Remove the image (make sure container is not running)
 $ docker rmi <IMAGE ID>
 
 # Delete every Docker image
 $ docker rmi -f $(docker images -q)
----------------------------------------------------------------------------------------------------------
+
 # Delete all unused images and volumes
 $ docker system prune --all
----------------------------------------------------------------------------------------------------------
-
----------------------------------------------------------------------------------------------------------
-
----------------------------------------------------------------------------------------------------------
 
 
 
