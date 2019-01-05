@@ -8,7 +8,7 @@ $ mvn clean install -Dmaven.test.skip=true
 $ cd src/main/docker
 $ docker-compose up
 
-# Stop the running container
+# Stop the running containers
 $ docker stop $(docker ps -a -q)
 
 # Delete every Docker containers, must run first as images are attached to containers

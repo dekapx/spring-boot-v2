@@ -75,5 +75,7 @@ $ docker rmi -f $(docker images -q)
 # Delete all unused images and volumes
 $ docker system prune --all
 
+# Execute command on running container (-U user, -W database)
+$ docker exec -it pg-docker-dev psql -U postgres -W testdb
 
 
