@@ -1,5 +1,6 @@
 package com.dekapx.springboot.repository;
 
+import com.dekapx.springboot.domain.AddressEntity;
 import com.dekapx.springboot.domain.ContactAuditEntity;
 import com.dekapx.springboot.domain.ContactEntity;
 import com.dekapx.springboot.domain.StatusEntity;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -39,16 +42,28 @@ public class ContactRepositoryTest {
 
     private ContactEntity createContact() {
         StatusEntity status = statusRepository.findByStatus("PENDING_AUTHORISED");
-        ContactEntity entity = new ContactEntity();
-        entity.setFirstName("Test");
-        entity.setLastName("Contact");
-        entity.setAddress("Dublin, Ireland");
-        entity.setEmail("test@gmail.com");
-        entity.setPhone("0123456789");
-        entity.setStatus(status);
-        entity.setModifiedBy("DeKapx");
-        contactRepository.save(entity);
-        return entity;
+        ContactEntity contact = new ContactEntity();
+        contact.setFirstName("Test");
+        contact.setLastName("Contact");
+        contact.setAddress(createAddress(contact));
+        contact.setEmail("test@gmail.com");
+        contact.setPhone("0123456789");
+        contact.setStatus(status);
+        contact.setModifiedBy("DeKapx");
+        contactRepository.save(contact);
+        return contact;
+    }
+
+    private List<AddressEntity> createAddress(ContactEntity contact) {
+        AddressEntity address = new AddressEntity();
+        address.setHouseNo("One CityQuarter");
+        address.setStreet("Athlone Town Centre");
+        address.setCity("Athlone");
+        address.setZip("N37 XY45");
+        address.setCounty("WH");
+        address.setCountry("Ireland");
+        address.setContact(contact);
+        return Arrays.asList(address);
     }
 
     private Long createAudit(Long entityId) {

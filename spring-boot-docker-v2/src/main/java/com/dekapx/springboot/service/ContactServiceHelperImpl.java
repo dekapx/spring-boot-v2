@@ -12,7 +12,7 @@ public class ContactServiceHelperImpl implements ContactServiceHelper {
                 .id(entity.getId())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
-                .address(entity.getAddress())
+//                .address(entity.getAddress())
                 .phone(entity.getPhone())
                 .email(entity.getEmail())
                 .status(entity.getStatus().getStatus())
@@ -25,7 +25,7 @@ public class ContactServiceHelperImpl implements ContactServiceHelper {
         final ContactEntity entity = new ContactEntity();
         entity.setFirstName(dto.getFirstName());
         entity.setLastName(dto.getLastName());
-        entity.setAddress(dto.getAddress());
+//        entity.setAddress(dto.getAddress());
         entity.setPhone(dto.getPhone());
         entity.setEmail(dto.getEmail());
         entity.setModifiedBy(dto.getModifiedBy());

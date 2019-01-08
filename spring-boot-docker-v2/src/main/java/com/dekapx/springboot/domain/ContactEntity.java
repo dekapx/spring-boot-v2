@@ -7,17 +7,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreRemove;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
-@Table(name = "CONTACTS")
+@Table(name = "CONTACT")
 @EqualsAndHashCode(callSuper = false)
 @EntityListeners(AuditingEntityListener.class)
 public class ContactEntity extends BaseEntity {
@@ -31,8 +36,8 @@ public class ContactEntity extends BaseEntity {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "ADDRESS")
-    private String address;
+    @OneToMany(mappedBy = "contact", cascade = CascadeType.ALL)
+    private List<AddressEntity> address = new ArrayList<>();
 
     @Column(name = "PHONE")
     private String phone;
