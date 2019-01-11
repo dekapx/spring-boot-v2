@@ -19,7 +19,13 @@ public class CommandFactoryTest {
 
     @Test
     public void getCommand_withCommandType_loadCommand() {
-        Command command = commandFactory.getCommand(CommandType.SAVE);
-        Assert.assertEquals(CommandType.SAVE, command.getCommandType());
+        Command saveCommand = commandFactory.getCommand(CommandType.SAVE);
+        Assert.assertEquals(CommandType.SAVE, saveCommand.getCommandType());
+
+        Command authorizeCommand = commandFactory.getCommand(CommandType.AUTHORISE);
+        Assert.assertEquals(CommandType.AUTHORISE, authorizeCommand.getCommandType());
+
+        Command updateCommand = commandFactory.getCommand(CommandType.UPDATE);
+        Assert.assertEquals(CommandType.UPDATE, updateCommand.getCommandType());
     }
 }

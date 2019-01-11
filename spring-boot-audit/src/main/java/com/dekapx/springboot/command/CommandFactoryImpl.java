@@ -15,6 +15,10 @@ public class CommandFactoryImpl implements CommandFactory {
     @Qualifier("authorizeCommand")
     private Command authorizeCommand;
 
+    @Autowired
+    @Qualifier("updateCommand")
+    private Command updateCommand;
+
     public Command getCommand(final CommandType commandType) {
         Command command = null;
         switch (commandType) {
@@ -24,8 +28,11 @@ public class CommandFactoryImpl implements CommandFactory {
             case AUTHORISE:
                 command = authorizeCommand;
                 break;
+            case UPDATE:
+                command = updateCommand;
+                break;
             default:
-                throw new IllegalArgumentException("Command not found");
+                throw new CommandNotFoundException("Command not found");
         }
         return command;
     }
