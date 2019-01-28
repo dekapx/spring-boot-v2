@@ -1,4 +1,4 @@
-package com.dekapx.springboot.config;
+package com.dekapx.springboot.command.config;
 
 import com.dekapx.springboot.command.Command;
 import org.springframework.beans.factory.config.ServiceLocatorFactoryBean;
