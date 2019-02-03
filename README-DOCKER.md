@@ -52,7 +52,7 @@ $ docker ps -a
 $ docker pull postgres
 
 # Setup and run PostgreSQL image in docker container
-$ docker run -d --name pg-docker-dev -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -p 5432:5432 postgres:latest
+$ docker run -d --name pg-docker-dev -e POSTGRES_USER=dekapx -e POSTGRES_PASSWORD=password -e POSTGRES_DB=testdb -p 5432:5432 postgres:latest
 
 # Stop a running container (pg-docker-dev - name of the image)
 $ docker stop pg-docker-dev 
