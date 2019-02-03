@@ -17,10 +17,10 @@ public class CommandFactoryImpl implements CommandFactory {
     }
 
     @Override
-    public Command getCommand(CommandType commandType) {
+    public Command getCommand(CommandType type) {
         return commands
                 .stream()
-                .filter(command -> command.getCommandType().equals(commandType))
+                .filter(c -> c.getCommandType().equals(type))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
