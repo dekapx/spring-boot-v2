@@ -1,6 +1,5 @@
-package com.dekapx.springboot.command.update;
+package com.dekapx.springboot.command;
 
-import com.dekapx.springboot.command.Command;
 import com.dekapx.springboot.enums.CommandType;
 import org.springframework.stereotype.Component;
 
