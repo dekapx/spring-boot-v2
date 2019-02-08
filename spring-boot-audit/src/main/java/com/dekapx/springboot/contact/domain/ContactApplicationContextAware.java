@@ -6,14 +6,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ContactApplicationContextAware implements ApplicationContextAware {
-
     private static ApplicationContext applicationContext;
 
     private ContactApplicationContextAware() {
     }
 
-    public static void injectDependency(Object classToAutowire) {
-        ContactApplicationContextAware.applicationContext.getAutowireCapableBeanFactory().autowireBean(classToAutowire);
+    public static void injectDependency(final Object object) {
+        ContactApplicationContextAware.applicationContext.getAutowireCapableBeanFactory().autowireBean(object);
     }
 
     @Override

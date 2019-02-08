@@ -14,13 +14,13 @@ public class ContactEntityListener {
     private StatusRepository statusRepository;
 
     @PrePersist
-    public void prePersist(ContactEntity contactEntity) {
+    public void prePersist(final ContactEntity contactEntity) {
         log.info("prePersist...................");
         ContactApplicationContextAware.injectDependency(this);
         contactEntity.setStatus(getStatus());
     }
 
-    public void setStatusRepository(StatusRepository statusRepository) {
+    public void setStatusRepository(final StatusRepository statusRepository) {
         this.statusRepository = statusRepository;
     }
 
