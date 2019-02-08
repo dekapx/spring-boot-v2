@@ -1,6 +1,5 @@
 package com.dekapx.springboot.command;
 
-import com.dekapx.springboot.enums.CommandType;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,13 +18,7 @@ public class CommandFactoryTest {
 
     @Test
     public void getCommand_withCommandType_loadCommand() {
-        Command saveCommand = commandFactory.getCommand(CommandType.SAVE);
-        Assert.assertEquals(CommandType.SAVE, saveCommand.getCommandType());
-
-        Command authorizeCommand = commandFactory.getCommand(CommandType.AUTHORISE);
-        Assert.assertEquals(CommandType.AUTHORISE, authorizeCommand.getCommandType());
-
-        Command updateCommand = commandFactory.getCommand(CommandType.UPDATE);
-        Assert.assertEquals(CommandType.UPDATE, updateCommand.getCommandType());
+        Command command = commandFactory.getCommand(CreateCommand.class);
+        Assert.assertEquals(CreateCommand.class.getTypeName(), command.getCommandType());
     }
 }

@@ -1,4 +1,4 @@
 package com.dekapx.springboot.command;
 
-public class UpdateRequest {
+public class CreateResponse {
 }
