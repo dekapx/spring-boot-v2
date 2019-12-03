@@ -1,1 +1,0 @@
-INSERT INTO CONTACT(FIRST_NAME,LAST_NAME,ADDRESS,PHONE,EMAIL) VALUES ('De','Kapx', '2121, El Comino Real, San Mateo, CA', '123456789', 'dekapx@kapx-inc.com');
