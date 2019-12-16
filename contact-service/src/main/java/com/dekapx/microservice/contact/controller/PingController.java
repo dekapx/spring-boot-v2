@@ -1,6 +1,7 @@
 package com.dekapx.microservice.contact.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -11,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class PingController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PingController.class);
 
     @GetMapping(value = "/ping", produces = "application/json")
     public String ping() {
-        LOGGER.info("PingController.ping() method invoked...");
+        log.info("PingController.ping() method invoked...");
         return "Hello! This URL is active...";
     }
 
