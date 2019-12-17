@@ -1,14 +1,13 @@
 package com.dekapx.microservice.contact.service;
 
 import com.dekapx.microservice.contact.domain.Contact;
-import com.dekapx.microservice.contact.dto.ContactDto;
 
 import java.util.List;
 
 public interface ContactService {
-    final String QUALIFIER = "contactService";
+    void save(Contact contact);
 
-    void save(ContactDto contactDto);
+    void update(Contact contact);
 
     Contact findById(Long id);
 

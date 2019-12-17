@@ -1,6 +1,7 @@
 package com.dekapx.microservice.contact.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 @Data
+@DynamicUpdate
 @Entity
 @Table(name = "contacts")
 public class Contact implements Serializable {
@@ -29,6 +30,4 @@ public class Contact implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "LAST_UPDATE_DATE", nullable = false)
-    private Timestamp lastUpdateDate;
 }
