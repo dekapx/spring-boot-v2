@@ -5,6 +5,7 @@ create table contacts(
   first_name varchar(55) not null,
   last_name varchar(55) not null,
   email varchar(75) not null,
+  create_date timestamp default current_date,
   last_update_date timestamp default current_date,
   constraint contact_pkey primary key (id)
 );
