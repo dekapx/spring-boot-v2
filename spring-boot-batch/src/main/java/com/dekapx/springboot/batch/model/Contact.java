@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "contacts")
-public class Contact extends Auditable<String> {
+public class Contact extends AbstractBaseEntity<String> {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
@@ -18,4 +18,7 @@ public class Contact extends Auditable<String> {
 
     @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "phone", nullable = false)
+    private String phone;
 }

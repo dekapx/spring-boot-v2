@@ -1,5 +1,7 @@
 package com.dekapx.springboot.batch.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -8,23 +10,32 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.Date;
 
 import static javax.persistence.TemporalType.TIMESTAMP;
 
+@Getter
+@Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class Auditable<U> implements Serializable  {
+public abstract class AbstractBaseEntity<U> implements Serializable  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     protected Long id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "STATUS_ID")
+    protected Status status;
 
     @CreatedDate
     @Temporal(TIMESTAMP)
