@@ -3,8 +3,6 @@ package com.dekapx.springboot.batch.service;
 import com.dekapx.springboot.batch.model.Contact;
 import com.dekapx.springboot.batch.model.Status;
 import com.dekapx.springboot.batch.specification.ContactSpecification;
-import com.dekapx.springboot.batch.specification.SearchCriteria;
-import com.dekapx.springboot.batch.specification.SearchOperation;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,19 +21,16 @@ public class ContactServiceTest {
     private ContactService contactService;
 
     @Test
-    public void save() {
-        Contact contact = contactService.save(createContact());
+    public void saveAndFind() {
+        contactService.save(createContact());
+        Specification firstNameSpec = ContactSpecification.compareFirstName("De");
+        List<Contact> contacts = contactService.findAll(firstNameSpec);
+        assertThat(contacts).isNotNull().isNotEmpty().hasSize(1);
+        Contact contact = contacts.iterator().next();
         assertThat(contact).isNotNull();
         assertThat(contact.getFirstName()).isEqualTo("De");
         assertThat(contact.getLastName()).isEqualTo("Kapx");
         assertThat(contact.getEmail()).isEqualTo("dekapx@kapxinc.com");
-    }
-
-    @Test
-    public void findAll() {
-        Specification firstNameSpec = ContactSpecification.compareFirstName("De");
-        List<Contact> contacts = contactService.findAll(firstNameSpec);
-        assertThat(contacts).isNotNull().isNotEmpty();
     }
 
     private Contact createContact() {
