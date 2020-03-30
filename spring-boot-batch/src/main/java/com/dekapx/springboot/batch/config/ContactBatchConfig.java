@@ -1,10 +1,13 @@
 package com.dekapx.springboot.batch.config;
 
+import com.dekapx.springboot.batch.listener.JobCompletionListener;
 import com.dekapx.springboot.batch.model.Contact;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
@@ -34,18 +37,26 @@ public class ContactBatchConfig {
     private ItemWriter writer;
 
     @Bean
-    public Job contactProcessJob() throws Exception {
-        return this.jobBuilderFactory.get("contactProcessJob")
-                .start(step1())
-                .build();
+    public Job processJob() {
+        return jobBuilderFactory
+                .get("processJob")
+                .incrementer(new RunIdIncrementer())
+                .listener(listener())
+                .flow(step1()).end().build();
     }
 
     @Bean
-    public Step step1() throws Exception {
-        return stepBuilderFactory.get("step1").<Contact, Contact> chunk(10)
+    public Step step1() {
+        return stepBuilderFactory.get("step1").<String, String> chunk(1)
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)
                 .build();
     }
+
+    @Bean
+    public JobExecutionListener listener() {
+        return new JobCompletionListener();
+    }
+
 }
