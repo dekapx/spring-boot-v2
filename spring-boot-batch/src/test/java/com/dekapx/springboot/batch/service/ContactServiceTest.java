@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
+import java.util.function.IntConsumer;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,6 +34,21 @@ public class ContactServiceTest {
         assertThat(contact.getLastName()).isEqualTo("Kapx");
         assertThat(contact.getEmail()).isEqualTo("dekapx@kapxinc.com");
     }
+
+    @Test
+    public void populateData() {
+        IntStream.range(1, 25).forEach(i -> consumer.accept(i));
+    }
+
+    IntConsumer consumer = (i) -> {
+        Contact contact = new Contact();
+        contact.setFirstName("Test " + i);
+        contact.setLastName("User");
+        contact.setEmail("testUser" + i + "@demo.com");
+        contact.setPhone("+353 01 234 5678");
+        contact.setStatus(getAuthorizedStatus());
+        contactService.save(contact);
+    };
 
     private Contact createContact() {
         Contact contact = new Contact();
