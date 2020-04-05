@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 @Slf4j
 @Component("contactItemWriter")
@@ -16,10 +17,10 @@ public class ContactItemWriter implements ItemWriter<Contact> {
     private ContactService contactService;
 
     @Override
-    public void write(List<? extends Contact> items) {
-        for (Contact contact : items) {
-            contactService.save(contact);
-            log.info("Save Contact...");
-        }
+    public void write(List<? extends Contact> contacts) throws Exception {
+        log.info("-------------- ContactItemWriter.write --------------");
+        contacts.forEach(contactConsumer);
     }
+
+    private Consumer<Contact> contactConsumer = (c) -> this.contactService.save(c);
 }

@@ -18,6 +18,9 @@ public class Status {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "STATUS_NAME")
-    private String statusName;
+    @Column(name = "STATUS_KEY")
+    private String statusKey;
+
+    @Column(name = "STATUS_VALUE")
+    private String statusValue;
 }

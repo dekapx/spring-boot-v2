@@ -1,4 +1,4 @@
-package com.dekapx.springboot.batch.specification;
+package com.dekapx.springboot.batch.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SearchCriteria {
-    private String key;
-    private Object value;
-    private SearchOperation operation;
+public class BatchEntityWrapper<T extends AbstractBaseEntity> {
+    private T entity;
+    private String statusKey;
 }

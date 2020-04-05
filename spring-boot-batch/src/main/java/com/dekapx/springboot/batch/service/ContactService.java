@@ -7,5 +7,9 @@ import java.util.List;
 
 public interface ContactService {
     Contact save(Contact contact);
-    List<Contact> findAll(Specification<Contact> specification);
+    Contact findByFirstName(String firstName);
+    List<Contact> findAll();
+    List<Contact> findByStatusKey(String statusKey);
+    List<Contact> findBySpecification(Specification<Contact> specification);
+    void delete(Contact contact);
 }
