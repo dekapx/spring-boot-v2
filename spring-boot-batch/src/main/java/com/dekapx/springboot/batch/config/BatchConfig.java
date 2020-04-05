@@ -1,6 +1,8 @@
 package com.dekapx.springboot.batch.config;
 
+import com.dekapx.springboot.batch.listener.JobCompletionListener;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -36,10 +38,16 @@ public class BatchConfig {
     private ItemWriter writer;
 
     @Bean
+    public JobExecutionListener listener() {
+        return new JobCompletionListener();
+    }
+
+    @Bean
     public Job processJob() {
         return jobBuilderFactory
                 .get("processJob")
                 .incrementer(new RunIdIncrementer())
+                .listener(listener())
                 .flow(step1()).end().build();
     }
 
