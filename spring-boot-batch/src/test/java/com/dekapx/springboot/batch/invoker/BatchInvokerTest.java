@@ -23,13 +23,13 @@ public class BatchInvokerTest {
     private BatchInvoker batchInvoker;
 
     @Test
-    public void createNewContactsAndInvokeBatch() {
-//        populateData();
-        batchInvoker.invoke();
+    public void populateData() {
+        IntStream.range(1, 25).forEach(i -> consumer.accept(i));
     }
 
-    private void populateData() {
-        IntStream.range(1, 25).forEach(i -> consumer.accept(i));
+    @Test
+    public void createNewContactsAndInvokeBatch() {
+        batchInvoker.invoke();
     }
 
     private IntConsumer consumer = (i) -> {

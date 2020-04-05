@@ -53,10 +53,12 @@ public class BatchConfig {
 
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("step1").<String, String> chunk(1)
+        return stepBuilderFactory.get("step1")
+                .<String, String> chunk(10) // marked as 10
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)
+                .throttleLimit(20)  // added throttle limit...
                 .build();
     }
 }
