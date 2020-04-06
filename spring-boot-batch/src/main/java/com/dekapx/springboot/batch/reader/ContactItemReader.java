@@ -32,11 +32,7 @@ public class ContactItemReader implements ItemReader<BatchEntityWrapper<Abstract
     @Override
     public BatchEntityWrapper<AbstractBaseEntity> read() throws Exception {
         log.info("-------------- ContactItemReader.read --------------");
-        if (!this.contacts.isEmpty()) {
-            return prepareWrapper(this.contacts.remove(0));
-        } else {
-            return null;
-        }
+        return (!this.contacts.isEmpty()) ? prepareWrapper(this.contacts.remove(0)) : null;
     }
 
     private BatchEntityWrapper<AbstractBaseEntity> prepareWrapper(final Contact contact) {
