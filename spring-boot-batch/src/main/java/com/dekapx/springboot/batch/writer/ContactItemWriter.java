@@ -17,8 +17,7 @@ public class ContactItemWriter implements ItemWriter<Contact> {
     private ContactService contactService;
 
     @Override
-    public void write(List<? extends Contact> contacts) {
-        log.info("-------------- ContactItemWriter.write --------------");
+    public void write(final List<? extends Contact> contacts) {
         contacts.forEach(contactConsumer);
     }
 

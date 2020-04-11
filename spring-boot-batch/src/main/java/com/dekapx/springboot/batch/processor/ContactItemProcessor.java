@@ -17,7 +17,6 @@ public class ContactItemProcessor implements ItemProcessor<BatchEntityWrapper<Co
 
     @Override
     public Contact process(BatchEntityWrapper<Contact> batchEntityWrapper) {
-        log.info("-------------- ContactItemProcessor.process --------------");
         final Contact contact = batchEntityWrapper.getEntity();
         final String statusKey = batchEntityWrapper.getStatusKey();
         final Status status = this.statusService.findByStatusKey(statusKey);

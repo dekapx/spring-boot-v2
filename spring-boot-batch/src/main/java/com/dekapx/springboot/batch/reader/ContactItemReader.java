@@ -3,12 +3,8 @@ package com.dekapx.springboot.batch.reader;
 import com.dekapx.springboot.batch.model.AbstractBaseEntity;
 import com.dekapx.springboot.batch.model.BatchEntityWrapper;
 import com.dekapx.springboot.batch.model.Contact;
-import com.dekapx.springboot.batch.service.ContactService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.NonTransientResourceException;
-import org.springframework.batch.item.ParseException;
-import org.springframework.batch.item.UnexpectedInputException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,7 +27,6 @@ public class ContactItemReader implements ItemReader<BatchEntityWrapper<Abstract
 
     @Override
     public BatchEntityWrapper<AbstractBaseEntity> read() {
-        log.info("-------------- ContactItemReader.read --------------");
         return (!this.contacts.isEmpty()) ? prepareWrapper(this.contacts.remove(0)) : null;
     }
 

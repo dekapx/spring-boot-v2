@@ -1,8 +1,7 @@
 package com.dekapx.springboot.batch.config;
 
-import com.dekapx.springboot.batch.listener.JobCompletionListener;
+import com.dekapx.springboot.batch.listener.ContactJobExecutionListener;
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -37,28 +36,26 @@ public class BatchConfig {
     @Qualifier("contactItemWriter")
     private ItemWriter writer;
 
-    @Bean
-    public JobExecutionListener listener() {
-        return new JobCompletionListener();
-    }
+    @Autowired
+    private ContactJobExecutionListener contactJobExecutionListener;
 
     @Bean
     public Job processJob() {
         return jobBuilderFactory
                 .get("processJob")
                 .incrementer(new RunIdIncrementer())
-                .listener(listener())
+                .listener(contactJobExecutionListener)
                 .flow(step1()).end().build();
     }
 
     @Bean
     public Step step1() {
         return stepBuilderFactory.get("step1")
-                .<String, String> chunk(10) // marked as 10
+                .<String, String> chunk(5) // marked as 5
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)
-                .throttleLimit(20)  // added throttle limit...
+                .throttleLimit(5)  // added throttle limit...
                 .build();
     }
 }
