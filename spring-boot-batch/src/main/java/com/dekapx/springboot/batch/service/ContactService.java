@@ -12,4 +12,5 @@ public interface ContactService {
     List<Contact> findByStatusKey(String statusKey);
     List<Contact> findBySpecification(Specification<Contact> specification);
     void delete(Contact contact);
+    void deleteAll();
 }

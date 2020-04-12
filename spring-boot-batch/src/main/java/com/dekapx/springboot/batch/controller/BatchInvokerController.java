@@ -43,6 +43,12 @@ public class BatchInvokerController {
         return "BatchInvokerController.populateData() method invoked...";
     }
 
+    @GetMapping(value = "/cleanup", produces = "application/json")
+    public String cleanup() {
+        contactService.deleteAll();
+        return "BatchInvokerController.cleanup() method invoked...";
+    }
+
     private IntConsumer consumer = (i) -> {
         Contact contact = new Contact();
         contact.setFirstName("Test " + i);

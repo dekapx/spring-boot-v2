@@ -46,4 +46,9 @@ public class ContactServiceImpl implements ContactService {
     public void delete(Contact contact) {
         this.contactRepository.delete(contact);
     }
+
+    @Override
+    public void deleteAll() {
+        this.contactRepository.deleteAll();
+    }
 }
