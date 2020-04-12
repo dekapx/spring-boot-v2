@@ -33,14 +33,12 @@ public class BatchInvokerController {
 
     @GetMapping(value = "/invokeBatch", produces = "application/json")
     public String invokeBatch() {
-        log.info("BatchInvokerController.invokeBatch() method invoked...");
         batchInvoker.invoke();
         return "BatchInvokerController.invokeBatch() method invoked...";
     }
 
     @GetMapping(value = "/populateData", produces = "application/json")
     public String populateData() {
-        log.info("BatchInvokerController.populateData() method invoked...");
         IntStream.range(1, 25).forEach(i -> consumer.accept(i));
         return "BatchInvokerController.populateData() method invoked...";
     }
