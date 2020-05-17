@@ -1,6 +1,6 @@
-http://localhost:9090/api/batch/populateData
-http://localhost:9090/api/batch/invokeBatch
-http://localhost:9090/api/batch/cleanup
+# http://localhost:9090/api/batch/populateData
+# http://localhost:9090/api/batch/invokeBatch
+# http://localhost:9090/api/batch/cleanup
 
 
 $ docker system prune --all
