@@ -39,7 +39,7 @@ public class BatchInvokerController {
 
     @GetMapping(value = "/populateData", produces = "application/json")
     public String populateData() {
-        IntStream.range(1, 25).forEach(i -> consumer.accept(i));
+        IntStream.range(1, 50).forEach(i -> consumer.accept(i));
         return "BatchInvokerController.populateData() method invoked...";
     }
 

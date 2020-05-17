@@ -24,7 +24,7 @@ public class BatchInvokerTest {
 
     @Test
     public void populateData() {
-        IntStream.range(1, 25).forEach(i -> consumer.accept(i));
+        IntStream.range(1, 50).forEach(i -> consumer.accept(i));
     }
 
     @Test
