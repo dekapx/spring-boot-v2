@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "contacts")
-@NamedQuery(name="Contact.findAll", query="SELECT c FROM Contact c")
 public class Contact extends AbstractBaseEntity<String> {
     @Column(name = "first_name", nullable = false)
     private String firstName;
