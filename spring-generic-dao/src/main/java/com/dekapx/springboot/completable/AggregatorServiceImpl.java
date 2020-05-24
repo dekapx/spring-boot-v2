@@ -16,13 +16,13 @@ public class AggregatorServiceImpl implements AggregatorService {
 
     @Override
     public AggregatedResponse aggregate() throws ExecutionException, InterruptedException {
-        CompletableFuture<Employee> employee = employeeService.findOne(1L);
-        CompletableFuture<Address> address = addressService.findOne(1L);
-        CompletableFuture.allOf(employee,address).join();
+        CompletableFuture<Employee> employeeCompletableFuture = employeeService.findOne(1L);
+        CompletableFuture<Address> addressCompletableFuture = addressService.findOne(1L);
+        CompletableFuture.allOf(employeeCompletableFuture, addressCompletableFuture).join();
 
         return AggregatedResponse.builder()
-                .employee(employee.get())
-                .address(address.get())
+                .employee(employeeCompletableFuture.get())
+                .address(addressCompletableFuture.get())
                 .build();
     }
 }
