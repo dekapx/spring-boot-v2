@@ -9,7 +9,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     private Class<T> clazz;
 
     @PersistenceContext
-    EntityManager entityManager;
+    private EntityManager entityManager;
 
     public void setClazz(Class<T> clazz) {
         this.clazz = clazz;
