@@ -24,7 +24,10 @@ public class ContactServiceTest {
     public void createAndFindContact() {
         contactService.save(createContact());
         Specification firstNameSpec = ContactSpecification.compareByFirstName("De");
-        List<Contact> contacts = contactService.findBySpecification(firstNameSpec);
+        Specification lastNameSpec = ContactSpecification.compareByLastName("Kapx");
+        Specification specification = Specification.where(firstNameSpec.and(lastNameSpec));
+
+        List<Contact> contacts = contactService.findBySpecification(specification);
         Contact contact = contacts.iterator().next();
         assertThat(contact).isNotNull();
         assertThat(contact.getFirstName()).isEqualTo("De");
