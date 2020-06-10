@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
+import static com.dekapx.webapp.contact.util.CommonConstants.AUTHORISED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -25,7 +26,8 @@ public class ContactServiceTest {
         contactService.save(createContact());
         Specification firstNameSpec = ContactSpecification.compareByFirstName("De");
         Specification lastNameSpec = ContactSpecification.compareByLastName("Kapx");
-        Specification specification = Specification.where(firstNameSpec.and(lastNameSpec));
+        Specification statusSpec = ContactSpecification.compareByStatus(getAuthorizedStatus(AUTHORISED));
+        Specification specification = Specification.where(firstNameSpec.and(lastNameSpec).and(statusSpec));
 
         List<Contact> contacts = contactService.findBySpecification(specification);
         Contact contact = contacts.iterator().next();
@@ -43,11 +45,11 @@ public class ContactServiceTest {
         contact.setLastName("Kapx");
         contact.setEmail("dekapx@kapxinc.com");
         contact.setPhone("+353 01 234 5678");
-        contact.setStatus(getAuthorizedStatus());
+        contact.setStatus(getAuthorizedStatus(AUTHORISED));
         return contact;
     }
 
-    private Status getAuthorizedStatus() {
-        return statusService.findByStatusKey("STATUS.1");
+    private Status getAuthorizedStatus(String status) {
+        return statusService.findByStatusKey(status);
     }
 }
