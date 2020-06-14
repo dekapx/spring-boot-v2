@@ -10,6 +10,8 @@ public class SaveCommand implements Command<SaveRequest, SaveResponse> {
     @Override
     public SaveResponse execute(final SaveRequest request) {
         log.info("SaveCommand invoked...");
-        return null;
+        return SaveResponse.builder()
+                .info("output-value")
+                .build();
     }
 }
