@@ -14,10 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.anyLong;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("JUnit5 tests for EmployeeService")
@@ -30,7 +28,6 @@ public class EmployeeServiceTest {
 
     @BeforeEach
     private void setup() {
-        initMocks(this);
         when(employeeDaoMock.findOne(anyLong())).thenAnswer(
                 (invocationOnMock) -> Employee.builder().id(1L).name("Dummy").build());
     }
