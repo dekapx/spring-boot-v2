@@ -1,16 +1,15 @@
 package com.dekapx.springboot.controller;
 
+import com.dekapx.springboot.model.Employee;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -18,12 +17,22 @@ public class EmployeeControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Test
     public void findById() throws Exception {
-        MockHttpServletResponse response = mockMvc
-                .perform(get("/api/employee/id/1").accept(MediaType.APPLICATION_JSON))
-                .andReturn().getResponse();
+        mockMvc.perform(get("/api/employee/id/1")
+                .contentType("application/json")
+                .param("sendWelcomeMail", "true")
+                .content(objectMapper.writeValueAsString(getEmployee())))
+                .andExpect(status().isOk());
+    }
 
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+    private Employee getEmployee() {
+        return Employee.builder()
+                .id(1L)
+                .name("Dummy")
+                .build();
     }
 }
