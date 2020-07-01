@@ -14,18 +14,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PingControllerTest {
+public class EmployeeControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void shouldReturnMessage() throws Exception {
+    public void findById() throws Exception {
         MockHttpServletResponse response = mockMvc
-                .perform(get("/api/ping").accept(MediaType.APPLICATION_JSON))
+                .perform(get("/api/employee/id/1").accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
         assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        assertThat(response.getContentAsString()).isEqualTo("Ping ! This URL is active...");
     }
 }
-
