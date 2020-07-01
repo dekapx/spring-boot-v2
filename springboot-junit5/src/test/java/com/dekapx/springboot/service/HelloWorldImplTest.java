@@ -44,6 +44,5 @@ public class HelloWorldImplTest {
                 () -> assertNotNull(actual),
                 () -> assertEquals(expected, actual)
         );
-
     }
 }
