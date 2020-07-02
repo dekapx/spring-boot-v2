@@ -24,7 +24,6 @@ public class EmployeeControllerTest {
     public void findById() throws Exception {
         mockMvc.perform(get("/api/employee/id/1")
                 .contentType("application/json")
-                .param("sendWelcomeMail", "true")
                 .content(objectMapper.writeValueAsString(getEmployee())))
                 .andExpect(status().isOk());
     }
