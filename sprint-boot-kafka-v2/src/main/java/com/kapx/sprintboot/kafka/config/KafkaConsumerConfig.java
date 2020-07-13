@@ -1,8 +1,5 @@
 package com.kapx.sprintboot.kafka.config;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.kapx.sprintboot.kafka.model.CustomMessage;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +11,11 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
-import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.apache.kafka.clients.consumer.ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG;
+import static org.apache.kafka.clients.consumer.ConsumerConfig.GROUP_ID_CONFIG;
 
 @EnableKafka
 @Configuration
