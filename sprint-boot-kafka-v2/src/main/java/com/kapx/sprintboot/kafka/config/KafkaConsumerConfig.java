@@ -23,7 +23,7 @@ public class KafkaConsumerConfig {
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
 
-    @Value("${test.topic}")
+    @Value("${kafka.topic.name}")
     private String topic;
 
     public ConsumerFactory<String, CustomMessage> consumerFactory() {
