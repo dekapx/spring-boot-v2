@@ -1,6 +1,6 @@
 package com.dekapx.springapp.config;
 
-import com.dekapx.springapp.model.FileWriter;
+import com.dekapx.springapp.command.Command;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.config.ServiceLocatorFactoryBean;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,7 @@ public class AppConfig {
     @Bean("parserFactory")
     public FactoryBean serviceLocatorFactoryBean() {
         ServiceLocatorFactoryBean factoryBean = new ServiceLocatorFactoryBean();
-        factoryBean.setServiceLocatorInterface(FileWriter.class);
+        factoryBean.setServiceLocatorInterface(Command.class);
         return factoryBean;
     }
 }
