@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class UpdateCommand implements Command {
+public class UpdateCommand implements Command<String, String> {
     @Override
-    public void execute() {
-        log.info("UpdateCommand executed...");
+    public String execute(String request) {
+        return null;
     }
 }

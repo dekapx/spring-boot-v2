@@ -1,6 +1,6 @@
 package com.dekapx.springapp.command;
 
 @FunctionalInterface
-public interface Command {
-    void execute();
+public interface Command<T, R> {
+    R execute(T request);
 }

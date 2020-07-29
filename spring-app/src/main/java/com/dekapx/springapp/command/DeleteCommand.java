@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class DeleteCommand implements Command {
+public class DeleteCommand implements Command<String, String> {
     @Override
-    public void execute() {
-        log.info("DeleteCommand executed...");
+    public String execute(String request) {
+        return null;
     }
 }

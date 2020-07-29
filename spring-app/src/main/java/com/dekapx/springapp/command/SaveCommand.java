@@ -5,13 +5,9 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class SaveCommand implements Command {
+public class SaveCommand implements Command<String, String> {
     @Override
-    public void execute() {
-        log.info("SaveCommand executed...");
-    }
-
-    public static void main(String[] args) {
-        System.out.println(SaveCommand.class.getTypeName());
+    public String execute(String request) {
+        return null;
     }
 }

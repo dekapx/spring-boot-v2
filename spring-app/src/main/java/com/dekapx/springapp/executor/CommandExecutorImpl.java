@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component;
 public class CommandExecutorImpl implements CommandExecutor {
     @Override
     public void executeCommand(final Command command) {
-        command.execute();
+        command.execute("Test");
     }
 }
