@@ -16,18 +16,13 @@
 
     <properties>
         <java.version>14</java.version>
+        <springdoc-openapi.version>1.4.3</springdoc-openapi.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -39,6 +34,20 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- 3rd Party Dependencies -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Open API -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc-openapi.version}</version>
         </dependency>
     </dependencies>
 
