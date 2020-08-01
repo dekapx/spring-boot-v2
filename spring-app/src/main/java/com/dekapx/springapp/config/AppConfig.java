@@ -1,6 +1,6 @@
 package com.dekapx.springapp.config;
 
-import com.dekapx.springapp.command.Command;
+import com.dekapx.springapp.core.command.Command;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.config.ServiceLocatorFactoryBean;
 import org.springframework.context.annotation.Bean;

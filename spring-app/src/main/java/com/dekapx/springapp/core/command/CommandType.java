@@ -1,8 +1,4 @@
-package com.dekapx.springapp.common;
-
-import com.dekapx.springapp.command.DeleteCommand;
-import com.dekapx.springapp.command.SaveCommand;
-import com.dekapx.springapp.command.UpdateCommand;
+package com.dekapx.springapp.core.command;
 
 public enum CommandType {
     SAVE_COMMAND {

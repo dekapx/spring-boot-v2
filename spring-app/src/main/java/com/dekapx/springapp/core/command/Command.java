@@ -1,4 +1,4 @@
-package com.dekapx.springapp.command;
+package com.dekapx.springapp.core.command;
 
 @FunctionalInterface
 public interface Command<T, R> {

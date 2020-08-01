@@ -1,7 +1,5 @@
-package com.dekapx.springapp.factory;
+package com.dekapx.springapp.core.command;
 
-import com.dekapx.springapp.command.Command;
-import com.dekapx.springapp.common.CommandType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
