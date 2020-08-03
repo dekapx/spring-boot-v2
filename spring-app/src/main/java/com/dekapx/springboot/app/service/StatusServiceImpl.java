@@ -7,19 +7,26 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+import static com.dekapx.springboot.app.util.MessageUtils.getNotNullOrEmptyMessage;
 import static org.springframework.util.Assert.hasLength;
 import static org.springframework.util.Assert.notNull;
 
 @Service
 @Transactional(Transactional.TxType.REQUIRED)
 public class StatusServiceImpl implements StatusService {
-    @Autowired
     private StatusRepository statusRepository;
+
+    @Autowired
+    public StatusServiceImpl(final StatusRepository statusRepository) {
+        this.statusRepository = statusRepository;
+    }
 
     @Override
     public Status findByStatusKey(final String statusKey) {
-        notNull(statusKey, "statusKey must not be null or empty.");
-        hasLength(statusKey, "statusKey must not be null or empty.");
+        notNull(statusKey, getNotNullOrEmptyMessage("statusKey"));
+        hasLength(statusKey, getNotNullOrEmptyMessage("statusKey"));
         return this.statusRepository.findByStatusKey(statusKey);
     }
+
+
 }
