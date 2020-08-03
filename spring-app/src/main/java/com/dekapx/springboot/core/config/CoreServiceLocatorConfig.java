@@ -7,11 +7,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ServiceLocatorConfig {
+public class CoreServiceLocatorConfig {
     @Bean
-    public FactoryBean serviceLocatorFactoryBean() {
+    public FactoryBean commandFactoryBean() {
+        return getServiceLocatorFactoryBean(Command.class);
+    }
+
+    private <T> ServiceLocatorFactoryBean getServiceLocatorFactoryBean(final Class<T> clazz) {
         ServiceLocatorFactoryBean factoryBean = new ServiceLocatorFactoryBean();
-        factoryBean.setServiceLocatorInterface(Command.class);
+        factoryBean.setServiceLocatorInterface(clazz);
         return factoryBean;
     }
 }

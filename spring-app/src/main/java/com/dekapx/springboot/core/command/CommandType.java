@@ -18,6 +18,6 @@ public enum CommandType {
     };
 
     private static <T> String getTypeName(final Class<T> clazz) {
-      return clazz.getTypeName();
-    };
+        return clazz.getTypeName();
+    }
 }
