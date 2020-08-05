@@ -17,7 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name = "author")
 @EntityMapper(mapperClass = AuthorMapper.class)
-public class Author {
+public class Author extends AbstractBaseEntity<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")

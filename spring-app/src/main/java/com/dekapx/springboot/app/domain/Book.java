@@ -19,7 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "book")
 @EntityMapper(mapperClass = BookMapper.class)
-public class Book {
+public class Book extends AbstractBaseEntity<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
