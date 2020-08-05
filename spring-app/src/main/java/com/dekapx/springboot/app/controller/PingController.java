@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +19,10 @@ import static org.springframework.http.HttpStatus.CONFLICT;
 @RequestMapping("/api")
 public class PingController {
     @GetMapping(value = "/ping/{name}", produces = "application/json")
-    public ResponseEntity<String> ping(@PathVariable String name) {
-        log.info("PingController.ping({}) method invoked...", name);
+    public ResponseEntity<String> ping(
+            @RequestHeader(name = "id") String id,
+            @RequestParam(name = "name", defaultValue = "Test") String name) {
+        log.info("PingController.ping({}) method invoked by id [{}]...", name, id);
         return new ResponseEntity<String>("Hello ! " + name, HttpStatus.OK);
     }
 
