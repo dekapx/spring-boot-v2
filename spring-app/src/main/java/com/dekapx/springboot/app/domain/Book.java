@@ -1,5 +1,7 @@
 package com.dekapx.springboot.app.domain;
 
+import com.dekapx.springboot.app.mapper.BookMapper;
+import com.dekapx.springboot.core.annotation.EntityMapper;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -16,6 +18,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "book")
+@EntityMapper(mapperClass = BookMapper.class)
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

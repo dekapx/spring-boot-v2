@@ -3,7 +3,6 @@ package com.dekapx.springboot.core.command;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,8 +12,7 @@ public class CommandFactoryImpl implements CommandFactory {
 
     @Autowired
     public CommandFactoryImpl(final List<Command> commands) {
-        this.commands = new ArrayList<>();
-        this.commands.addAll(commands);
+        this.commands = List.copyOf(commands);
     }
 
     @Override

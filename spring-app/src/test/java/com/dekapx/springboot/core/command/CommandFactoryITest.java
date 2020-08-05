@@ -14,22 +14,21 @@ public class CommandFactoryITest {
     @Autowired
     private CommandFactory commandFactory;
 
-
     @Test
-    public void getCommand_withGivenCommandType_returnsCommand() {
-        Command saveCommand = commandFactory.getCommand(SAVE_COMMAND);
+    public void givenCommandTypeShouldReturnCommand() {
+        Command saveCommand = this.commandFactory.getCommand(SAVE_COMMAND);
         assertThat(saveCommand)
                 .isNotNull()
                 .isInstanceOf(SaveCommand.class);
         saveCommand.execute("Test");
 
-        Command updateCommand = commandFactory.getCommand(UPDATE_COMMAND);
+        Command updateCommand = this.commandFactory.getCommand(UPDATE_COMMAND);
         assertThat(updateCommand)
                 .isNotNull()
                 .isInstanceOf(UpdateCommand.class);
         updateCommand.execute("Test");
 
-        Command deleteCommand = commandFactory.getCommand(DELETE_COMMAND);
+        Command deleteCommand = this.commandFactory.getCommand(DELETE_COMMAND);
         assertThat(deleteCommand)
                 .isNotNull()
                 .isInstanceOf(DeleteCommand.class);

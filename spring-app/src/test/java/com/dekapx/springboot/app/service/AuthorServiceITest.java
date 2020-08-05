@@ -1,6 +1,6 @@
 package com.dekapx.springboot.app.service;
 
-import com.dekapx.springboot.app.domain.Author;
+import com.dekapx.springboot.app.dto.AuthorDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,10 +16,10 @@ public class AuthorServiceITest {
 
     @Test
     public void shouldReturnAllAuthors() {
-        List<Author> authors = authorService.findAll();
+        List<AuthorDto> authors = authorService.findAll();
         assertThat(authors)
                 .isNotNull()
                 .isNotEmpty()
-                .hasAtLeastOneElementOfType(Author.class);
+                .hasAtLeastOneElementOfType(AuthorDto.class);
     }
 }

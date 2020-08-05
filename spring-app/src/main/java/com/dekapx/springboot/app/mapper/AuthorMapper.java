@@ -7,12 +7,30 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthorMapper implements Mapper<Author, AuthorDto> {
     @Override
-    public Author toEntity(AuthorDto dto) {
-        return null;
+    public void copy(final Author source, final Author target) {
+
     }
 
     @Override
-    public AuthorDto toDto(Author entity) {
-        return null;
+    public Author toEntity(final AuthorDto authorDto) {
+        final Author author = new Author();
+        author.setId(authorDto.getId());
+        author.setFirstName(authorDto.getFirstName());
+        author.setLastName(authorDto.getLastName());
+        return author;
+    }
+
+    @Override
+    public AuthorDto toDto(final Author author) {
+        return AuthorDto.builder()
+                .id(author.getId())
+                .firstName(author.getFirstName())
+                .lastName(author.getLastName())
+                .build();
+    }
+
+    @Override
+    public String getType() {
+        return this.getClass().getTypeName();
     }
 }
