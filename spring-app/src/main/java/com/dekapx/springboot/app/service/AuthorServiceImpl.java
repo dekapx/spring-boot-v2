@@ -27,7 +27,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public List<AuthorDto> findAll() {
-        final List<Author> authors = authorRepository.findAll();
+        final List<Author> authors = this.authorRepository.findAll();
         final Mapper<Author, AuthorDto> mapper = this.mapperFactory.getMapper(AuthorMapper.class);
         return authors.stream()
                 .map(author -> mapToDto(mapper, author))

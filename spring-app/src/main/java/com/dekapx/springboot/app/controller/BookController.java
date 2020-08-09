@@ -1,7 +1,7 @@
 package com.dekapx.springboot.app.controller;
 
-import com.dekapx.springboot.app.dto.AuthorDto;
-import com.dekapx.springboot.app.service.AuthorService;
+import com.dekapx.springboot.app.dto.BookDto;
+import com.dekapx.springboot.app.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,17 +19,17 @@ import static org.springframework.http.HttpStatus.CONFLICT;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/author")
-public class AuthorController {
+@RequestMapping("/api/book")
+public class BookController {
     @Autowired
-    private AuthorService authorService;
+    private BookService bookService;
 
     @ResponseBody
     @GetMapping(value = "/findAll", produces = "application/json")
-    public ResponseEntity<List<AuthorDto>> findAll() {
-        final List<AuthorDto> authors = this.authorService.findAll();
-        log.info("Find all authors...");
-        return new ResponseEntity<List<AuthorDto>>(authors, HttpStatus.OK);
+    public ResponseEntity<List<BookDto>> findAll() {
+        final List<BookDto> books = this.bookService.findAll();
+        log.info("Find all books...");
+        return new ResponseEntity<List<BookDto>>(books, HttpStatus.OK);
     }
 
     @ExceptionHandler

@@ -4,11 +4,14 @@ import com.dekapx.springboot.app.domain.Author;
 import com.dekapx.springboot.app.dto.AuthorDto;
 import org.springframework.stereotype.Component;
 
-@Component
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Component("authorMapper")
 public class AuthorMapper implements Mapper<Author, AuthorDto> {
     @Override
     public void copy(final Author source, final Author target) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -21,12 +24,22 @@ public class AuthorMapper implements Mapper<Author, AuthorDto> {
     }
 
     @Override
+    public List<Author> toEntity(List<AuthorDto> dto) {
+        return null;
+    }
+
+    @Override
     public AuthorDto toDto(final Author author) {
         return AuthorDto.builder()
                 .id(author.getId())
                 .firstName(author.getFirstName())
                 .lastName(author.getLastName())
                 .build();
+    }
+
+    @Override
+    public List<AuthorDto> toDto(List<Author> entity) {
+        return entity.stream().map(e -> toDto(e)).collect(Collectors.toList());
     }
 
     @Override
