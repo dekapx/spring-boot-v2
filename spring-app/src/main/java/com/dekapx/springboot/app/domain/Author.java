@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +18,11 @@ import java.util.List;
 @Table(name = "author")
 @EntityMapper(mapperClass = AuthorMapper.class)
 public class Author extends AbstractBaseEntity<String> {
+    @NotNull
     @Column(name = "FIRST_NAME")
     private String firstName;
 
+    @NotNull
     @Column(name = "LAST_NAME")
     private String lastName;
 
