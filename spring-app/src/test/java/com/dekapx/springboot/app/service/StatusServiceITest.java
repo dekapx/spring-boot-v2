@@ -17,7 +17,7 @@ public class StatusServiceITest {
     @Test
     public void shouldThrowIllegalArgumentExceptionWhenGivenNullInput() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            statusService.findByStatusKey(null);
+            this.statusService.findByStatusKey(null);
         });
         String expectedMessage = "statusKey must not be null or empty.";
         String actualMessage = exception.getMessage();
@@ -27,7 +27,7 @@ public class StatusServiceITest {
     @Test
     public void shouldThrowIllegalArgumentExceptionWhenGivenEmptyInput() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            statusService.findByStatusKey("");
+            this.statusService.findByStatusKey("");
         });
         String expectedMessage = "statusKey must not be null or empty.";
         String actualMessage = exception.getMessage();

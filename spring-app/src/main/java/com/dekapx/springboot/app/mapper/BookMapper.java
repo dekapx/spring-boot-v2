@@ -15,7 +15,7 @@ public class BookMapper implements Mapper<Book, BookDto> {
     }
 
     @Override
-    public Book toEntity(BookDto dto) {
+    public Book toEntity(final BookDto dto) {
         final Book book = new Book();
         book.setTitle(dto.getTitle());
         book.setIsbn(dto.getIsbn());
@@ -24,12 +24,15 @@ public class BookMapper implements Mapper<Book, BookDto> {
     }
 
     @Override
-    public List<Book> toEntity(List<BookDto> dto) {
-        return null;
+    public List<Book> toEntity(final List<BookDto> dtos) {
+        return dtos
+                .stream()
+                .map(dto -> toEntity(dto))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public BookDto toDto(Book entity) {
+    public BookDto toDto(final Book entity) {
         return BookDto.builder()
                 .title(entity.getTitle())
                 .isbn(entity.getIsbn())
@@ -38,8 +41,11 @@ public class BookMapper implements Mapper<Book, BookDto> {
     }
 
     @Override
-    public List<BookDto> toDto(List<Book> entity) {
-        return entity.stream().map(e -> toDto(e)).collect(Collectors.toList());
+    public List<BookDto> toDto(final List<Book> entities) {
+        return entities
+                .stream()
+                .map(e -> toDto(e))
+                .collect(Collectors.toList());
     }
 
     @Override

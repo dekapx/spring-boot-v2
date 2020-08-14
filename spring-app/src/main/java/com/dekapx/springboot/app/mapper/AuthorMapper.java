@@ -24,8 +24,11 @@ public class AuthorMapper implements Mapper<Author, AuthorDto> {
     }
 
     @Override
-    public List<Author> toEntity(List<AuthorDto> dto) {
-        return null;
+    public List<Author> toEntity(final List<AuthorDto> dtos) {
+        return dtos
+                .stream()
+                .map(dto -> toEntity(dto))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -38,8 +41,11 @@ public class AuthorMapper implements Mapper<Author, AuthorDto> {
     }
 
     @Override
-    public List<AuthorDto> toDto(List<Author> entity) {
-        return entity.stream().map(e -> toDto(e)).collect(Collectors.toList());
+    public List<AuthorDto> toDto(final List<Author> entities) {
+        return entities
+                .stream()
+                .map(e -> toDto(e))
+                .collect(Collectors.toList());
     }
 
     @Override
