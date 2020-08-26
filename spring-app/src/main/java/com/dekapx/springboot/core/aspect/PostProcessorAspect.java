@@ -21,11 +21,13 @@ public class PostProcessorAspect {
     }
 
     @Around("execution(* *(..)) && @annotation(postProcessor)")
-    public void around(final ProceedingJoinPoint joinPoint, final PostProcessor postProcessor) {
+    public Object around(final ProceedingJoinPoint joinPoint, final PostProcessor postProcessor) {
+        Object result = null;
         try {
-            this.postProcessorHandler.postProcess(joinPoint, postProcessor);
+            result = this.postProcessorHandler.postProcess(joinPoint, postProcessor);
         } catch (Throwable throwable) {
             log.error("Exception while handling PostProcessor...", throwable);
         }
+        return result;
     }
 }
