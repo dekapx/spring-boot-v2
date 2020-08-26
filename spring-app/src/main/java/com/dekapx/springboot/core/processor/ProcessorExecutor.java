@@ -1,7 +1,6 @@
 package com.dekapx.springboot.core.processor;
 
-import java.util.List;
-
+@FunctionalInterface
 public interface ProcessorExecutor {
-    void execute(List<Processor> processors);
+    void execute(Processor processor, Object[] args);
 }

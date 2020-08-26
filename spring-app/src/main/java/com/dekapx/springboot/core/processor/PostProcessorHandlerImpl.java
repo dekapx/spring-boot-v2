@@ -20,12 +20,14 @@ public class PostProcessorHandlerImpl extends AbstractProcessorHandler implement
 
     @Override
     public Object postProcess(final ProceedingJoinPoint proceedingJoinPoint, final PostProcessor postProcessor) throws Throwable {
-        Object result = proceedingJoinPoint.proceed();
-        log.info("Result value [{}]", result);
+        final Object result = proceedingJoinPoint.proceed();
+        executeProcessors(proceedingJoinPoint.getArgs(), postProcessor);
+        return result;
+    }
 
+    private void executeProcessors(final Object[] args, final PostProcessor postProcessor) {
         final Class[] processorTypes = postProcessor.processorTypes();
         final List<Processor> processors = getProcessors(processorTypes);
-        processorExecutor.execute(processors);
-        return result;
+        processors.forEach(p -> p.process(args));
     }
 }

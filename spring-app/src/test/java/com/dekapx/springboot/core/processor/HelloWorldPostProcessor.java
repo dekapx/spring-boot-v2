@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class HelloWorldPostProcessor implements Processor {
     @Override
-    public void process() {
-        log.debug("HelloWorldPostProcessor.process()...");
+    public void process(final Object[] args) {
+        log.info("HelloWorldPostProcessor.process()...");
+        log.info("Argument value is: [{}]", args[0]);
     }
 }

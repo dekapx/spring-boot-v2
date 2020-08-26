@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoggingProcessor implements Processor {
     @Override
-    public void process() {
+    public void process(final Object[] args) {
         log.info("Perform logging...");
     }
 }
