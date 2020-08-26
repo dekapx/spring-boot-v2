@@ -6,13 +6,12 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -31,9 +30,7 @@ public class Book extends AbstractBaseEntity<String> {
     @Column(name = "publisher")
     private String publisher;
 
-    @ManyToMany
-    @JoinTable(name = "author_book",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
-    private List<Author> authors = new ArrayList<>();
+    @ManyToMany(mappedBy = "books")
+    @OrderBy("firstName")
+    private Set<Author> authors = new HashSet<>();
 }
