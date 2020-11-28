@@ -9,5 +9,9 @@ import org.springframework.data.repository.CrudRepository;
 public interface ContactRepository extends CrudRepository<Contact, Long> {
     @Override
     @JaversAuditable
-    <S extends Contact> S save(S s);
+    <E extends Contact> E save(E entity);
+
+    @Override
+    @JaversAuditable
+    void delete(Contact contact);
 }

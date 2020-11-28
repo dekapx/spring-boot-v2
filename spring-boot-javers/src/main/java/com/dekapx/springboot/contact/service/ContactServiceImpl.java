@@ -21,14 +21,23 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact save(final Contact contact) {
-        return repository.save(contact);
+        log.info("Persist new Contact...");
+        return this.repository.save(contact);
     }
 
     @Override
     public Contact findById(final Long id) {
-        final Optional<Contact> optional = repository.findById(id);
+        log.info("Find Contact by id [{}]...", id);
+        final Optional<Contact> optional = this.repository.findById(id);
 
         return optional.orElseThrow(()
                 -> new ResourceNotFoundException(String.format("Contact with ID [{}] not found...", id)));
+    }
+
+    @Override
+    public void deleteById(final Long id) {
+        final Optional<Contact> optional = this.repository.findById(id);
+        log.info("Delete Contact by id [{}]...", id);
+        optional.ifPresent(c -> this.repository.delete(c));
     }
 }

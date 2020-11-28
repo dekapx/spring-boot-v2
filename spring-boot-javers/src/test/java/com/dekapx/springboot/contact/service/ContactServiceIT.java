@@ -21,6 +21,7 @@ public class ContactServiceIT {
         Contact contact = saveContact();
         updateContactEmail(contact.getId());
         updateContactPhone(contact.getId());
+        deleteContact(contact.getId());
     }
 
     private Contact saveContact() {
@@ -31,18 +32,22 @@ public class ContactServiceIT {
         return contact;
     }
 
-    private void updateContactEmail(final Long id) {
+    private void updateContactEmail(Long id) {
         Contact contact = this.contactService.findById(id);
         contact.setEmail("test@mydomain.ie");
         contact = this.contactService.save(contact);
         assertThat(contact.getEmail()).isEqualTo("test@mydomain.ie");
     }
 
-    private void updateContactPhone(final Long id) {
+    private void updateContactPhone(Long id) {
         Contact contact = this.contactService.findById(id);
         contact.setPhone("+353 89 999 8888");
         contact = this.contactService.save(contact);
         assertThat(contact.getPhone()).isEqualTo("+353 89 999 8888");
+    }
+
+    private void deleteContact(Long id) {
+        this.contactService.deleteById(id);
     }
 
     private Contact buildContact() {
