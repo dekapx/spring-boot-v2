@@ -17,7 +17,7 @@ public class ContactServiceIT {
         ContactDto dto = saveContact();
         updateContactEmail(dto);
         updateContactPhone(dto);
-        deleteContact(dto.getId());
+//        deleteContact(dto.getId());
     }
 
     private ContactDto saveContact() {
@@ -36,7 +36,7 @@ public class ContactServiceIT {
 
     private void updateContactPhone(ContactDto dto) {
         dto.setPhone("+353 89 999 8888");
-        dto = this.contactService.save(dto);
+        dto = this.contactService.update(dto);
         assertThat(dto.getPhone()).isEqualTo("+353 89 999 8888");
     }
 
