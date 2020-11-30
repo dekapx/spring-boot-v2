@@ -1,9 +1,13 @@
 package com.dekapx.springboot.contact.service;
 
-import com.dekapx.springboot.contact.domain.Contact;
+import com.dekapx.springboot.contact.dto.ContactDto;
 
 public interface ContactService {
-    Contact save (Contact contact);
-    Contact findById(Long id);
-    void deleteById(Long id);
+    ContactDto save (ContactDto contactDto);
+
+    ContactDto update (ContactDto contactDto);
+
+    ContactDto findById(Long id);
+
+    void delete(Long id);
 }
