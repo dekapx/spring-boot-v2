@@ -1,6 +1,7 @@
 package com.dekapx.springboot.contact.service;
 
 import com.dekapx.springboot.contact.domain.Contact;
+import com.dekapx.springboot.contact.dto.AddressDto;
 import com.dekapx.springboot.contact.dto.ContactDto;
 import org.javers.core.Changes;
 import org.javers.core.metamodel.object.CdoSnapshot;
@@ -23,6 +24,8 @@ public class ContactServiceIT {
         ContactDto dto = saveContact();
         updateContactEmail(dto);
         updateContactPhone(dto);
+        updateContactAddress(dto);
+        updateContactZipcode(dto);
         findAudit(dto);
         deleteContact(dto.getId());
     }
@@ -47,6 +50,19 @@ public class ContactServiceIT {
         assertThat(dto.getPhone()).isEqualTo("+353 89 999 8888");
     }
 
+    private void updateContactAddress(ContactDto dto) {
+        dto.getAddressDto().setHouseNo("2121");
+        dto.getAddressDto().setStreet("El Comino Real");
+        dto = this.contactService.update(dto);
+        assertThat(dto.getPhone()).isEqualTo("+353 89 999 8888");
+    }
+
+    private void updateContactZipcode(ContactDto dto) {
+        dto.getAddressDto().setZipcode("94404");
+        dto = this.contactService.update(dto);
+        assertThat(dto.getPhone()).isEqualTo("+353 89 999 8888");
+    }
+
     private void deleteContact(Long id) {
         this.contactService.delete(id);
     }
@@ -63,11 +79,24 @@ public class ContactServiceIT {
     }
 
     private ContactDto buildContactDto() {
+        AddressDto addressDto = buildAddressDto();
         return ContactDto.builder()
                 .firstName("Test")
                 .lastName("User")
                 .email("test@mydomain.com")
                 .phone("+1 123 456 7890")
+                .addressDto(buildAddressDto())
+                .build();
+    }
+
+    private AddressDto buildAddressDto() {
+        return AddressDto.builder()
+                .houseNo("1830")
+                .street("Gateway Drive")
+                .city("San Mateo")
+                .county("CA")
+                .zipcode("94403")
+                .country("United States")
                 .build();
     }
 }

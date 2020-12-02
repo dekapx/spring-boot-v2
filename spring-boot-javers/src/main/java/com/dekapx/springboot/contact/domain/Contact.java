@@ -4,8 +4,11 @@ import com.dekapx.springboot.core.domain.AbstractBaseEntity;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
@@ -25,4 +28,8 @@ public class Contact extends AbstractBaseEntity<String> implements Serializable 
 
     @Column(name = "phone", nullable = false)
     private String phone;
+
+    @OneToOne(mappedBy = "contact", cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER, optional = false)
+    private Address address;
 }
