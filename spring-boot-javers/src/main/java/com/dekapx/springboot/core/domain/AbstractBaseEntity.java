@@ -2,6 +2,7 @@ package com.dekapx.springboot.core.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.javers.core.metamodel.annotation.DiffIgnore;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -30,20 +31,24 @@ public abstract class AbstractBaseEntity<U> implements Serializable  {
     @Column(name = "ID")
     protected Long id;
 
+    @DiffIgnore
     @CreatedDate
     @Temporal(TIMESTAMP)
     @Column(name = "CREATED_DATE", nullable = false, updatable = true)
     protected Date createdDate;
 
+    @DiffIgnore
     @CreatedBy
     @Column(name = "CREATED_BY")
     protected U createdBy;
 
+    @DiffIgnore
     @LastModifiedDate
     @Temporal(TIMESTAMP)
     @Column(name = "LAST_MODIFIED_DATE", nullable = false, updatable = true)
     protected Date lastModifiedDate;
 
+    @DiffIgnore
     @LastModifiedBy
     @Column(name = "LAST_MODIFIED_BY")
     protected U lastModifiedBy;
