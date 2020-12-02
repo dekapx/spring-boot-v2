@@ -27,7 +27,7 @@ public class ContactServiceIT {
         updateContactAddress(dto);
         updateContactZipcode(dto);
         findAudit(dto);
-        deleteContact(dto.getId());
+//        deleteContact(dto.getId());
     }
 
     private ContactDto saveContact() {
@@ -52,7 +52,7 @@ public class ContactServiceIT {
 
     private void updateContactAddress(ContactDto dto) {
         dto.getAddressDto().setHouseNo("2121");
-        dto.getAddressDto().setStreet("El Comino Real");
+        dto.getAddressDto().setStreet("El Camino Real");
         dto = this.contactService.update(dto);
         assertThat(dto.getPhone()).isEqualTo("+353 89 999 8888");
     }
@@ -74,7 +74,7 @@ public class ContactServiceIT {
         List<CdoSnapshot> snapshots = this.contactService.findSnapshots(dto);
         assertThat(snapshots).isNotNull();
 
-        Changes changes = this.contactService.findChanges(dto);
+        Changes changes = this.contactService.findChanges();
         assertThat(changes).isNotNull();
     }
 

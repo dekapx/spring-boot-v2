@@ -1,5 +1,6 @@
 package com.dekapx.springboot.contact.service;
 
+import com.dekapx.springboot.contact.domain.Address;
 import com.dekapx.springboot.contact.domain.Contact;
 import com.dekapx.springboot.contact.dto.ContactDto;
 import com.dekapx.springboot.contact.repository.ContactRepository;
@@ -87,7 +88,19 @@ public class ContactServiceImpl implements ContactService {
         final Optional<Contact> optional = this.repository.findById(contactDto.getId());
         final Contact contact = optional.orElseThrow(()
                 -> new ResourceNotFoundException(String.format("Contact with ID [{}] not found...", contactDto.getId())));
-        final Changes changes = this.javers.findChanges(QueryBuilder.byInstance(contact).build());
+        final Changes changes = this.javers.findChanges(QueryBuilder.byInstance(contact)
+                .withChildValueObjects(true)
+                .build());
+        log.info(changes.prettyPrint());
+        return changes;
+    }
+
+    @Override
+    public Changes findChanges() {
+        final Changes changes = this.javers
+                .findChanges(QueryBuilder.byClass(Contact.class, Address.class)
+                .withChildValueObjects()
+                .build());
         log.info(changes.prettyPrint());
         return changes;
     }

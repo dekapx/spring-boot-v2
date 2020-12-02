@@ -22,4 +22,6 @@ public interface ContactService {
     List<CdoSnapshot> findSnapshots(ContactDto contactDto);
 
     Changes findChanges(ContactDto contactDto);
+
+    Changes findChanges();
 }
