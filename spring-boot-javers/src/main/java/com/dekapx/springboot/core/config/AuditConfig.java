@@ -14,7 +14,7 @@ public class AuditConfig {
     private static class SimpleAuthorProvider implements AuthorProvider {
         @Override
         public String provide() {
-            return "DeKapx";
+            return "KAPIL";
         }
     }
 }
