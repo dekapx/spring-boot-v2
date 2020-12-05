@@ -17,6 +17,8 @@
 	<properties>
 		<java.version>15</java.version>
 		<javers.version>5.14.0</javers.version>
+		<mockito-core.version>3.6.28</mockito-core.version>
+		<mockito-junit-jupiter.version>3.6.28</mockito-junit-jupiter.version>
 		<assertj.version>3.18.1</assertj.version>
 	</properties>
 
@@ -37,6 +39,18 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${mockito-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>${mockito-junit-jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

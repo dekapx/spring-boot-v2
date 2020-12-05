@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,53 +23,54 @@ public class ContactServiceIT {
 
     @Test
     public void createNewContact() {
-        ContactDto dto = saveContact();
-        updateContactEmail(dto);
-        updateContactPhone(dto);
-        updateContactAddress(dto);
-        updateContactZipcode(dto);
-        findAudit(dto);
-//        deleteContact(dto.getId());
+        updateContactEmail
+                .andThen(updateContactPhone)
+                .andThen(updateContactAddress)
+                .andThen(updateContactZipcode)
+                .andThen(updateContactZipcode)
+                .andThen(findAudit)
+                .andThen(deleteContact)
+                .accept(saveContact.get());
     }
 
-    private ContactDto saveContact() {
+    private Supplier<ContactDto> saveContact = () -> {
         ContactDto dto = this.contactService.save(buildContactDto());
         assertThat(dto.getId()).isNotNull();
         assertThat(dto.getEmail()).isEqualTo("test@mydomain.com");
         assertThat(dto.getPhone()).isEqualTo("+1 123 456 7890");
         return dto;
-    }
+    };
 
-    private void updateContactEmail(ContactDto dto) {
+    private Consumer<ContactDto> updateContactEmail = (dto) -> {
         dto.setEmail("test@mydomain.ie");
         dto = this.contactService.update(dto);
         assertThat(dto.getEmail()).isEqualTo("test@mydomain.ie");
-    }
+    };
 
-    private void updateContactPhone(ContactDto dto) {
+    private Consumer<ContactDto> updateContactPhone = (dto) -> {
         dto.setPhone("+353 89 999 8888");
         dto = this.contactService.update(dto);
         assertThat(dto.getPhone()).isEqualTo("+353 89 999 8888");
-    }
+    };
 
-    private void updateContactAddress(ContactDto dto) {
+    private Consumer<ContactDto> updateContactAddress = (dto) -> {
         dto.getAddressDto().setHouseNo("2121");
         dto.getAddressDto().setStreet("El Camino Real");
         dto = this.contactService.update(dto);
         assertThat(dto.getPhone()).isEqualTo("+353 89 999 8888");
-    }
+    };
 
-    private void updateContactZipcode(ContactDto dto) {
+    private Consumer<ContactDto> updateContactZipcode = (dto) -> {
         dto.getAddressDto().setZipcode("94404");
         dto = this.contactService.update(dto);
         assertThat(dto.getPhone()).isEqualTo("+353 89 999 8888");
-    }
+    };
 
-    private void deleteContact(Long id) {
-        this.contactService.delete(id);
-    }
+    private Consumer<ContactDto> deleteContact = (dto) -> {
+        this.contactService.delete(dto.getId());
+    };
 
-    private void findAudit(ContactDto dto) {
+    private Consumer<ContactDto> findAudit = (dto) -> {
         List<Shadow<Contact>> shadows = this.contactService.findShadows(dto);
         assertThat(shadows).isNotNull();
 
@@ -76,10 +79,9 @@ public class ContactServiceIT {
 
         Changes changes = this.contactService.findChanges();
         assertThat(changes).isNotNull();
-    }
+    };
 
     private ContactDto buildContactDto() {
-        AddressDto addressDto = buildAddressDto();
         return ContactDto.builder()
                 .firstName("Test")
                 .lastName("User")
