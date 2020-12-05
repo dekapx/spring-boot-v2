@@ -2,15 +2,15 @@ package com.dekapx.springboot.event.model;
 
 import org.springframework.context.ApplicationEvent;
 
-public class GenericAppEvent<String> extends ApplicationEvent {
-    private String message;
+public class GenericAppEvent<T> extends ApplicationEvent {
+    private T event;
 
-    public GenericAppEvent(final Object source, final String message) {
+    public GenericAppEvent(final Object source, final T event) {
         super(source);
-        this.message = message;
+        this.event = event;
     }
 
-    public String getMessage() {
-        return message;
+    public T getEvent() {
+        return event;
     }
 }
