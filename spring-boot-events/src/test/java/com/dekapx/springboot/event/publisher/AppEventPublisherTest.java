@@ -19,12 +19,12 @@ public class AppEventPublisherTest {
     @Test
     public void publishEvent() {
         ContactCreateEvent createEvent = ContactCreateEvent.builder().event("Contact Created").build();
-        appEventPublisher.publishEvent(new ContactApplicationEvent(this, createEvent));
+        this.appEventPublisher.publishEvent(new ContactApplicationEvent(this, createEvent));
 
         ContactUpdateEvent updateEvent = ContactUpdateEvent.builder().event("Contact Updated").build();
-        appEventPublisher.publishEvent(new ContactApplicationEvent(this, updateEvent));
+        this.appEventPublisher.publishEvent(new ContactApplicationEvent(this, updateEvent));
 
         ContactDeleteEvent deleteEvent = ContactDeleteEvent.builder().event("Contact Deleted").build();
-        appEventPublisher.publishEvent(new ContactApplicationEvent(this, deleteEvent));
+        this.appEventPublisher.publishEvent(new ContactApplicationEvent(this, deleteEvent));
     }
 }

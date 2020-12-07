@@ -11,8 +11,12 @@ import org.springframework.stereotype.Component;
 @Primary
 @Component
 public class AppEventPublisherImpl implements AppEventPublisher {
-    @Autowired
     private ApplicationEventPublisher eventPublisher;
+
+    @Autowired
+    public AppEventPublisherImpl(final ApplicationEventPublisher eventPublisher) {
+        this.eventPublisher = eventPublisher;
+    }
 
     @Override
     public <T extends ApplicationEvent> void publishEvent(final T event) {
