@@ -1,4 +1,4 @@
-package com.dekapx.springboot.event.config;
+package com.dekapx.springboot.core.event.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

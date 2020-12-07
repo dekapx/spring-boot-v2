@@ -1,4 +1,4 @@
-package com.dekapx.springboot.event.model;
+package com.dekapx.springboot.contact.event.model;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,6 +7,6 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class ContactUpdateEvent implements Event {
+public class ContactDeleteEvent{
     private String event;
 }

@@ -1,4 +1,4 @@
-package com.dekapx.springboot.event.model;
+package com.dekapx.springboot.core.event.model;
 
 public interface Event {
     String getEvent();

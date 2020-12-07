@@ -1,4 +1,4 @@
-package com.dekapx.springboot.event.controller;
+package com.dekapx.springboot.contact.event.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;

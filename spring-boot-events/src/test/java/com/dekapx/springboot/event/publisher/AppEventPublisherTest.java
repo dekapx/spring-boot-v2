@@ -1,10 +1,10 @@
 package com.dekapx.springboot.event.publisher;
 
-import com.dekapx.springboot.event.model.ContactCreateEvent;
-import com.dekapx.springboot.event.model.ContactDeleteEvent;
-import com.dekapx.springboot.event.model.ContactUpdateEvent;
-import com.dekapx.springboot.event.model.DummyEvent;
-import com.dekapx.springboot.event.model.TestEvent;
+import com.dekapx.springboot.contact.event.model.ContactApplicationEvent;
+import com.dekapx.springboot.contact.event.model.ContactCreateEvent;
+import com.dekapx.springboot.contact.event.model.ContactDeleteEvent;
+import com.dekapx.springboot.contact.event.model.ContactUpdateEvent;
+import com.dekapx.springboot.core.event.publisher.AppEventPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,13 @@ public class AppEventPublisherTest {
 
     @Test
     public void publishEvent() {
-        appEventPublisher.publishEvent(ContactCreateEvent.builder().event("Contact Created").build());
-        appEventPublisher.publishEvent(ContactUpdateEvent.builder().event("Contact Updated").build());
-        appEventPublisher.publishEvent(ContactDeleteEvent.builder().event("Contact Deleted").build());
+        ContactCreateEvent createEvent = ContactCreateEvent.builder().event("Contact Created").build();
+        appEventPublisher.publishEvent(new ContactApplicationEvent(this, createEvent));
 
-        appEventPublisher.publishEvent(DummyEvent.builder().message("Dummy Event").build());
-        appEventPublisher.publishEvent(DummyEvent.builder().message("Test Event").build());
+        ContactUpdateEvent updateEvent = ContactUpdateEvent.builder().event("Contact Updated").build();
+        appEventPublisher.publishEvent(new ContactApplicationEvent(this, updateEvent));
+
+        ContactDeleteEvent deleteEvent = ContactDeleteEvent.builder().event("Contact Deleted").build();
+        appEventPublisher.publishEvent(new ContactApplicationEvent(this, deleteEvent));
     }
 }
