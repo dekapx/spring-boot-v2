@@ -25,6 +25,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Autowired
     private MapperFactory mapperFactory;
 
+    @Transactional
     @Override
     public List<AuthorDto> findAll() {
         final List<Author> authors = this.authorRepository.findAll();
