@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Slf4j
 @Component
 public class ContactResolver implements GraphQLQueryResolver {
@@ -15,5 +17,9 @@ public class ContactResolver implements GraphQLQueryResolver {
 
     public Contact findContact(final Long id) {
         return this.contactService.findById(id);
+    }
+
+    public List<Contact> findContacts() {
+        return this.contactService.findAllContacts();
     }
 }

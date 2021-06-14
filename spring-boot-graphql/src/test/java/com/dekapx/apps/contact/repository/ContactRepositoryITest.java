@@ -2,6 +2,7 @@ package com.dekapx.apps.contact.repository;
 
 import com.dekapx.apps.contact.domain.Contact;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class ContactRepositoryITest {
     public void setup() {
     }
 
+    @Disabled
     @Test
     @DisplayName("ContactRepository CRUD")
     public void createUpdateAndDelete() {

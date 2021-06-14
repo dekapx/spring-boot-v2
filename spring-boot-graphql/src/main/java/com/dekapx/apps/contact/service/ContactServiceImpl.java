@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -21,6 +23,13 @@ public class ContactServiceImpl implements ContactService {
         var contactOptional = this.repository.findById(id);
         return contactOptional.orElseThrow(()
                 -> new ResourceNotFoundException(String.format("Contact with ID [%d] not found.", id)));
+    }
+
+    @Override
+    public List<Contact> findAllContacts() {
+        final List<Contact> contacts = new ArrayList<>();
+        this.repository.findAll().forEach(c -> contacts.add(c));
+        return contacts;
     }
 
 }

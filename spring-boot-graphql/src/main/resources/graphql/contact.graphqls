@@ -3,6 +3,7 @@ schema {
 }
 type Query {
     findContact(id: ID): Contact
+    findContacts: [Contact]
 }
 
 type Contact {
