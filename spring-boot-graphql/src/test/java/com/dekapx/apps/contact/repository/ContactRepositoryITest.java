@@ -22,7 +22,10 @@ public class ContactRepositoryITest {
     private static final String PHONE = "+1 (123) 456 7890";
 
     @Autowired
-    private ContactRepository repository;
+    private ContactRepository contactRepository;
+
+    @Autowired
+    private StatusRepository statusRepository;
 
     @BeforeEach
     public void setup() {
@@ -36,7 +39,7 @@ public class ContactRepositoryITest {
     }
 
     private void createAndVerify() {
-        final var contact = this.repository.save(contactSupplier.get());
+        final var contact = this.contactRepository.save(contactSupplier.get());
         assertAll(
                 () -> assertNotNull(contact),
                 () -> assertEquals(FIRST_NAME, contact.getFirstName()),

@@ -1,0 +1,19 @@
+server:
+    port: 9090
+
+spring:
+    application:
+        name: 'spring-boot-jpa'
+
+    datasource:
+        platform: POSTGRESQL
+        username: dekapx
+        password: passw0rd
+        url: jdbc:postgresql://localhost:5432/testdb
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true

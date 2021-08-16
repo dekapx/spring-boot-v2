@@ -1,5 +1,6 @@
 package com.dekapx.apps.core.domain;
 
+import com.dekapx.apps.contact.domain.Status;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -10,10 +11,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import java.io.Serializable;
 import java.util.Date;
@@ -29,6 +33,10 @@ public abstract class AbstractBaseEntity<U> implements Serializable  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     protected Long id;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "STATUS_ID")
+    protected Status status;
 
     @CreatedDate
     @Temporal(TIMESTAMP)
