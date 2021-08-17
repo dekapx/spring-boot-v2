@@ -4,7 +4,6 @@ server:
 spring:
     application:
         name: 'spring-boot-jpa'
-
     datasource:
         platform: POSTGRESQL
         username: dekapx
@@ -16,4 +15,11 @@ spring:
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
+                generate_statistics: true
         show-sql: true
+
+logging:
+    level:
+        org:
+            hibernate:
+                stat: DEBUG
