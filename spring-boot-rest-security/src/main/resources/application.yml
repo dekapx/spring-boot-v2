@@ -1,0 +1,12 @@
+server:
+    port: 9090
+
+spring:
+    application:
+        name: 'spring-boot-rest-security'
+
+logging:
+    level:
+        org:
+            hibernate:
+                stat: DEBUG
