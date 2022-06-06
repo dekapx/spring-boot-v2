@@ -1,13 +1,9 @@
-package com.dekapx.springboot.contact.event.controller;
+package com.dekapx.springboot.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import static org.springframework.http.HttpStatus.CONFLICT;
 
 @Slf4j
 @RestController
@@ -17,11 +13,5 @@ public class PingController {
     public String ping() {
         log.info("PingController.ping() method invoked...");
         return "This URL is active...";
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(CONFLICT)
-    public String handleException(final Exception e) {
-        return e.getMessage();
     }
 }
