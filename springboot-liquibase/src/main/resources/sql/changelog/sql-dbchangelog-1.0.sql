@@ -1,6 +1,6 @@
 -- liquibase formatted sql
 
--- changeset kapil:1
+-- changeset kapil:1.0
 create sequence status_id_seq;
 create table status (
 	id integer not null default nextval('status_id_seq'::regclass),
