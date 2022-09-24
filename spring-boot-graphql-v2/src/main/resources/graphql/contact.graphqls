@@ -1,0 +1,23 @@
+schema {
+    query: Query
+}
+type Query {
+    findContact(id: ID): Contact
+    findContacts: [Contact]
+}
+
+type Contact {
+    id: ID!
+    firstName: String
+    lastName: String
+    email: String
+    phone: String
+    status: Status
+}
+
+type Status {
+    id: ID!
+    statusKey: String
+    statusValue: String
+}
+
