@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>14</java.version>
         <spring-kafka.version>2.5.3.RELEASE</spring-kafka.version>
-        <avro.version>1.10.0</avro.version>
+        <avro.version>1.11.3</avro.version>
     </properties>
 
     <dependencies>
