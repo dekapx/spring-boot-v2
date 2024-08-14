@@ -1,0 +1,10 @@
+------------------------------------------------------------------------------------------------
+http://localhost:9092/swagger-ui.html
+------------------------------------------------------------------------------------------------
+https://attacomsian.com/blog/spring-data-jpa-specifications
+https://www.baeldung.com/rest-api-search-language-spring-data-specifications
+https://reflectoring.io/spring-data-specifications/
+https://www.logicbig.com/tutorials/spring-framework/spring-data/specifications.html
+https://leaks.wanari.com/2018/01/23/awesome-spring-specification
+https://medium.com/fleetx/searching-and-filtering-spring-data-jpa-specification-way-e22bc055229a
+------------------------------------------------------------------------------------------------
