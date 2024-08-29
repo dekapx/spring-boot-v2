@@ -14,16 +14,16 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.1.RELEASE</version>
+        <version>3.3.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>14</java.version>
-        <spring-kafka.version>2.5.3.RELEASE</spring-kafka.version>
-        <avro.version>1.10.0</avro.version>
+        <java.version>22</java.version>
+        <spring-kafka.version>3.2.2</spring-kafka.version>
+        <avro.version>1.12.0</avro.version>
     </properties>
 
     <dependencies>

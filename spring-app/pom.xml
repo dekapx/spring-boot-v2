@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.5.3</version>
+        <version>3.3.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.dekapx.springapp</groupId>
@@ -15,12 +15,11 @@
     <description>Demo project for Spring Boot</description>
 
     <properties>
-        <java.version>16</java.version>
-        <guava.version>32.0.0-jre</guava.version>
+        <java.version>22</java.version>
         <mockito-core.version>3.11.2</mockito-core.version>
         <mockito-junit-jupiter.version>3.11.2</mockito-junit-jupiter.version>
         <assertj.version>3.20.2</assertj.version>
-        <springdoc-openapi.version>1.4.3</springdoc-openapi.version>
+        <springdoc-openapi-starter.version>2.6.0</springdoc-openapi-starter.version>
     </properties>
 
     <dependencies>
@@ -77,18 +76,12 @@
             <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-
 
         <!-- Open API -->
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>${springdoc-openapi.version}</version>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc-openapi-starter.version}</version>
         </dependency>
     </dependencies>
 

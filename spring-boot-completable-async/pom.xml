@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.4</version>
+		<version>3.3.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -16,9 +16,8 @@
 	<description>Cloud Native Contact Service v1</description>
 
 	<properties>
-		<java.version>17</java.version>
-		<springdoc-openapi.version>1.6.6</springdoc-openapi.version>
-		<guava.version>32.0.0-jre</guava.version>
+		<java.version>22</java.version>
+		<springdoc-openapi.version>2.6.0</springdoc-openapi.version>
 		<junit-jupiter.version>5.8.2</junit-jupiter.version>
 		<mockito-core.version>4.3.1</mockito-core.version>
 		<mockito-junit-jupiter.version>4.3.1</mockito-junit-jupiter.version>
@@ -45,11 +44,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
